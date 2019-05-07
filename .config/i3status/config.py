@@ -70,7 +70,7 @@ status.register("mem",
     color="#999999",
     warn_color="#E5E500",
     alert_color="#FF1919",
-    format=" {percent_used_mem}% - {used_mem}/{total_mem} GB",
+    format=" {used_mem}/{total_mem} GB",
     divisor=1073741824,)
 
 status.register('github',
