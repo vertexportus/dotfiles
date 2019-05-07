@@ -5,20 +5,9 @@ import os
 import os.path
 
 from i3pystatus import Status
-# from i3pystatus.updates import pacman, cower
-
+from keyrings.alt.file import PlaintextKeyring
 
 status = Status()
-
-# Displays clock like this:
-# Tue 30 Jul 11:59:46 PM KW31
-#                          ^-- calendar week
-
-# status.register("updates",
-#     format = "Updates: {count}",
-#     format_no_updates = "",
-#     on_leftclick="termite --geometry=1200x600 --title=updates -e 'pacaur --needed --noconfirm --noedit -Syu'",
-#     backends = [pacman.Pacman(), cower.Cower()])
 
 status.register("clock",
     format=" %H:%M:%S ",
@@ -44,21 +33,28 @@ status.register("network",
    format_up=": {v4cidr}",
    format_down="",)
 
-# status.register("battery",
-#     battery_ident="BAT0",
-#     interval=5,
-#     format="{status} {percentage:.0f}%",
-#     alert=True,
-#     alert_percentage=15,
-#     color="#FFFFFF",
-#     critical_color="#FF1919",
-#     charging_color="#E5E500",
-#     full_color="#D19A66",
-#     status={
-#         "DIS": " ",
-#         "CHR": "  ",
-#         "FULL": "   ",
-# },)
+status.register("network",
+   interface="wlo1",
+   color_up="#8AE234",
+   color_down="#EF2929",
+   format_up=": {v4cidr}",
+   format_down="",)
+
+status.register("battery",
+    battery_ident="BAT0",
+    interval=5,
+    format="{status} {percentage:.0f}%",
+    alert=True,
+    alert_percentage=15,
+    color="#FFFFFF",
+    critical_color="#FF1919",
+    charging_color="#E5E500",
+    full_color="#D19A66",
+    status={
+        "DIS": " ",
+        "CHR": "  ",
+        "FULL": "   ",
+},)
 
 status.register("temp",
         format=" {temp} °C",
@@ -66,7 +62,6 @@ status.register("temp",
         dynamic_color=True
                 )
 
-# status.register("cpu_usage_graph",)
 status.register("cpu_usage",
     #on_leftclick="terminology --name=htop -e 'htop' &",
     format=" {usage}%",)
@@ -78,56 +73,33 @@ status.register("mem",
     format=" {percent_used_mem}% - {used_mem}/{total_mem} GB",
     divisor=1073741824,)
 
-# status.register("disk",
-#     color='#56B6C2',
-#     path="/home",
-#     on_leftclick="pcmanfm",
-#     format=" {avail} GB",)
-
-# status.register("text",
-#     text="|",
-#     color="#222222")
-
-# status.register("disk",
-#     hints = {"separator": False, "separator_block_width": 3},
-#     color='#ABB2BF',
-#     path="/",
-#     format=": {avail} GB",)
-
 status.register('github',
-    format=" {status} [{unread}][{update_error}]",
+    log_level=10,
     notify_status=True,
     notify_unread=True,
-    access_token='b283b649b95a00d93e4e3cb6e4560681107f08a5',)
+    access_token='f36fc1397ac1591c3507898fd34ff3be3ed8e709',
+    hints={'markup': 'pango'},
+    update_error='<span color="#ff0000">!</span>',
+    refresh_icon='<span color="#ff5f00">⟳</span>',
+    status={
+        'good': '✓',
+        'minor': '!',
+        'major': '!!',
+    },
+    colors={
+        'good': '#008700',
+        'minor': '#d7ff00',
+        'major': '#af0000',
+    },
+    format=' {status}[{unread_count}][{update_error}]',
+    keyring_backend=PlaintextKeyring(),
+    api_methods_url='https://www.githubstatus.com/api/v2/status.json'
+)
 
 status.register('ping',
    format_disabled='-ping-',
    color='#61AEEE')
 
 status.register('scratchpad',)
-
-# status.register("keyboard_locks",
-#     format='{caps}{num}',
-#     caps_on='A',
-#     caps_off='a',
-#     num_on='0',
-#     num_off=' ',
-#     color='#e60053',
-#     )
-
-# status.register("mpd",
-#     host='localhost',
-#     port='6600',
-#     format="{status}",
-#     on_leftclick="switch_playpause",
-#     on_rightclick=["mpd_command", "stop"],
-#     on_middleclick=["mpd_command", "shuffle"],
-#     on_upscroll=["mpd_command", "next_song"],
-#     on_downscroll=["mpd_command", "previous_song"],
-#     status={
-#         "pause": " ",
-#         "play": " ",
-#         "stop": " ",
-#     },)
 
 status.run()
