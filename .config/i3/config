@@ -27,6 +27,9 @@ exec --no-startup-id odrive
 exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 
+# applications config
+for_window [class="Peek"] floating enable
+
 # BG
 exec --no-startup-id systemd-run --on-calendar="*:0/15" --user -- \
     /usr/bin/feh --no-fehbg --bg-scale --randomize -r ~/gdrive/Personal/wallpapers
@@ -75,10 +78,10 @@ exec_always terminology -B -t=solarized -f="FiraCode/20" --name=floatpython -e p
 bindsym $mod+Shift+c [instance="floatpython"] scratchpad show, move position center
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
