@@ -70,12 +70,14 @@ bindsym $mod+Tab exec rofi -show window -modi window -theme $rofiTheme -font $ro
 
 # floating scratch
 for_window [instance="floatconsole"] move scratchpad, move position center, border pixel 5
-exec_always terminology -B -t=nyanology -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
+exec terminology -B -t=nyanology -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
 for_window [instance="floatpython"] move scratchpad, resize set 600 500, move position center, border pixel 5
-exec_always terminology -B -t=solarized -f="FiraCode/20" --name=floatpython -e python3
+exec terminology -B -t=solarized -f="FiraCode/20" --name=floatpython -e python3
 bindsym $mod+Shift+c [instance="floatpython"] scratchpad show, move position center
+
+bindsym $mod+u exec terminology -B -t=nyanology -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/20" --name=floatpython -e python3
 
 # change focus
 #bindsym $mod+j focus left
