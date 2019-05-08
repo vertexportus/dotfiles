@@ -74,10 +74,11 @@ status.register("mem",
     format=" {used_mem}/{total_mem} GB",
     divisor=1073741824,)
 
+github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
 status.register('github',
     notify_status=True,
     notify_unread=True,
-    access_token='7f92b6699372b78d0fb36d762bd4779f4d511638',
+    access_token=github_access_token,
     hints={'markup': 'pango'},
     update_error='<span color="#ff0000">!</span>',
     refresh_icon='<span color="#ff5f00">⟳</span>',
