@@ -7,7 +7,7 @@ import os.path
 from i3pystatus import Status
 from keyrings.alt.file import PlaintextKeyring
 
-status = Status()
+status = Status(logfile='$HOME/.logs/i3pystatus.log')
 
 status.register("clock",
     format=" %H:%M:%S ",
@@ -77,7 +77,7 @@ status.register("mem",
 status.register('github',
     notify_status=True,
     notify_unread=True,
-    access_token='f36fc1397ac1591c3507898fd34ff3be3ed8e709',
+    access_token='7f92b6699372b78d0fb36d762bd4779f4d511638',
     hints={'markup': 'pango'},
     update_error='<span color="#ff0000">!</span>',
     refresh_icon='<span color="#ff5f00">⟳</span>',
@@ -92,7 +92,8 @@ status.register('github',
         'major': '#af0000',
     },
     format=' {status}[{unread_count}][{update_error}]',
-    keyring_backend=PlaintextKeyring()
+    keyring_backend=PlaintextKeyring(),
+    log_level=5
 )
 
 status.register('ping',
