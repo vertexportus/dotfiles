@@ -54,7 +54,8 @@ status.register("battery",
         "DIS": " ",
         "CHR": "  ",
         "FULL": "   ",
-},)
+    },
+    not_present_text="")
 
 status.register("temp",
         format=" {temp} °C",
