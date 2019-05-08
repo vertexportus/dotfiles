@@ -1,1 +1,3 @@
-# desktop-config
+# vertexportus/dotfiles
+
+My personal linux configs
