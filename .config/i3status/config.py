@@ -75,7 +75,6 @@ status.register("mem",
     divisor=1073741824,)
 
 status.register('github',
-    log_level=10,
     notify_status=True,
     notify_unread=True,
     access_token='f36fc1397ac1591c3507898fd34ff3be3ed8e709',
@@ -93,8 +92,7 @@ status.register('github',
         'major': '#af0000',
     },
     format=' {status}[{unread_count}][{update_error}]',
-    keyring_backend=PlaintextKeyring(),
-    api_methods_url='https://www.githubstatus.com/api/v2/status.json'
+    keyring_backend=PlaintextKeyring()
 )
 
 status.register('ping',
