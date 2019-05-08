@@ -1,6 +1,6 @@
 # basic configs
 set $mod Mod4
-floating_modifier $mod
+#floating_modifier $mod
 default_border pixel 0
 focus_follows_mouse no
 font pango:Fira Code Light 8
