@@ -30,14 +30,14 @@ status.register("network",
    interface="eno1",
    color_up="#8AE234",
    color_down="#EF2929",
-   format_up=": {v4cidr}",
+   format_up=" {v4cidr}",
    format_down="",)
 
 status.register("network",
    interface="wlo1",
    color_up="#8AE234",
    color_down="#EF2929",
-   format_up=": {v4cidr}",
+   format_up=" {v4cidr}",
    format_down="",)
 
 status.register("battery",
@@ -51,20 +51,26 @@ status.register("battery",
     charging_color="#E5E500",
     full_color="#D19A66",
     status={
-        "DIS": " ",
-        "CHR": "  ",
-        "FULL": "   ",
+        "DIS": "",
+        "CHR": " ",
+        "FULL": " ",
     },
     not_present_text="")
+
+nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
+if nvidia_in_use != '':
+    status.register('gpu_temp',
+        format=" {temp} °C",
+        color="#2be5c6",
+        alert_temp=60)
 
 status.register("temp",
         format=" {temp} °C",
         lm_sensors_enabled=False,
-        dynamic_color=True
-                )
+        dynamic_color=True)
 
 status.register("cpu_usage",
-    #on_leftclick="terminology --name=htop -e 'htop' &",
+    on_leftclick="terminology --name=htop -e 'htop' &",
     format=" {usage}%",)
 
 status.register("mem",
