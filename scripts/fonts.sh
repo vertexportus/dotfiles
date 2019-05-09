@@ -22,3 +22,7 @@ ln -s $PWD/ionicons/docs/fonts/ionicons.ttf ~/.fonts/
 # Typicons
 git clone --depth 1 https://github.com/stephenhutchings/typicons.font
 ln -s $PWD/typicons.font/src/font/typicons.ttf ~/.fonts/
+
+# Fura Code Nerd
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
+ln -s "$PWD/nerd-fonts/patched-fonts/FiraCode/Retina/complete/Fura Code Retina Nerd Font Complete.ttf" ~/.fonts/

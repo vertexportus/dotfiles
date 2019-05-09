@@ -18,7 +18,7 @@ for_window [class="Peek"] floating enable
 
 # dmenu (rafi)
 set $rofiTheme DarkBlue
-set $rofiFont "Fira Code 12"
+set $rofiFont "Fura Code Nerd Font Retina 12"
 bindsym $mod+d exec rofi -combi-modi window#drun#ssh -theme $rofiTheme -font $rofiFont -show combi
 bindsym $mod+Tab exec rofi -show window -modi window -theme $rofiTheme -font $rofiFont
 
