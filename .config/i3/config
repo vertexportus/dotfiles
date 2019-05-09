@@ -28,9 +28,9 @@ exec --no-startup-id systemd-run --on-calendar="*:0/15" --user -- \
 exec /usr/bin/feh --no-fehbg --bg-fill --randomize -r ~/gdrive/Personal/wallpapers 
 
 # PrintScreens - maim is having quality issues
-# bindsym Print exec maim -m 10 -s --format=png /dev/stdout | xclip -selection clipboard -t image/png -i
+bindsym Print exec maim -m 10 -s --format=png /dev/stdout | xclip -selection clipboard -t image/png -i
 # bindsym Print exec "import - | xclip -selection clipboard -t image/png -i"
-bindsym Print exec scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
+# bindsym Print exec scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
