@@ -101,6 +101,9 @@ status.register('ping',
    format_disabled='-ping-',
    color='#61AEEE')
 
+status.register('spotify',
+    format_no_player='')
+
 status.register('scratchpad',)
 
 status.run()
