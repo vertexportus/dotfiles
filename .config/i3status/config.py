@@ -87,7 +87,7 @@ status.register("mem",
 
 github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
 status.register('github',
-    notify_status=False,
+    notify_status=True,
     notify_unread=True,
     access_token=github_access_token,
     hints={'markup': 'pango'},
@@ -103,7 +103,7 @@ status.register('github',
         'minor': '#d7ff00',
         'major': '#af0000',
     },
-    format=' {status}[{unread_count}][{update_error}]',
+    format=' [{status}][{unread_count}][{update_error}]',
     keyring_backend=PlaintextKeyring(),
     log_level=5
 )
