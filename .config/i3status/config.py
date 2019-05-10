@@ -58,11 +58,16 @@ status.register("battery",
     not_present_text="")
 
 nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
+amd_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep amdgpu').read()
 if nvidia_in_use != '':
     status.register('gpu_temp',
         format=" {temp} °C",
         color="#2be5c6",
         alert_temp=60)
+elif amd_in_use != '':
+    status.register('amdgpu',
+        format=' {temp} °C',
+        color="#2be5c6")
 
 status.register("temp",
         format=" {temp} °C",
