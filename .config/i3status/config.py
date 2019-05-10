@@ -33,12 +33,14 @@ status.register("network",
    format_up=" {v4cidr}",
    format_down="",)
 
-status.register("network",
-   interface="wlo1",
-   color_up="#8AE234",
-   color_down="#EF2929",
-   format_up=" {v4cidr}",
-   format_down="",)
+has_wifi = os.popen('ip a | grep wlo1').read()
+if has_wifi != '':
+    status.register("network",
+    interface="wlo1",
+    color_up="#8AE234",
+    color_down="#EF2929",
+    format_up=" {v4cidr}",
+    format_down="",)
 
 status.register("battery",
     battery_ident="BAT0",
