@@ -1,0 +1,10 @@
+#!/bin/bash
+
+create_config_links() {
+    configs_path=$BASE_PATH/config
+
+    ln -sf $configs_path/compton/compton.conf ~/.config
+    ln -sf $configs_path/i3 ~/.config
+    ln -sf $configs_path/i3status ~/.config
+    cp $configs_path/zsh/.zshrc ~/.zshrc
+}
