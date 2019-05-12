@@ -1,0 +1,47 @@
+#!/bin/bash
+
+install_fonts() {
+    fonts_path=$BASE_PATH/.fonts
+    if [ ! -d "$fonts_path" ]; then
+        mkdir $fonts_path
+    fi
+    cd $fonts_path
+
+    # Material Design Icons
+    if [ ! -d "$fonts_path/material-design-icons" ]; then
+        git clone --depth 1 https://github.com/google/material-design-icons && echo 'cloned'
+    fi
+    ln -sf $fonts_path/material-design-icons/iconfont/MaterialIcons-Regular.ttf ~/.fonts/
+
+    # Community Fork
+    if [ ! -d "$fonts_path/MaterialDesign-Webfont" ]; then
+        git clone --depth 1 https://github.com/Templarian/MaterialDesign-Webfont && echo 'cloned'
+    fi
+    ln -sf $fonts_path/MaterialDesign-Webfont/fonts/materialdesignicons-webfont.ttf ~/.fonts/
+
+    # FontAwesome
+    if [ ! -d "$fonts_path/Font-Awesome" ]; then
+        git clone --depth 1 https://github.com/FortAwesome/Font-Awesome && echo 'cloned'
+    fi
+    ln -sf "$fonts_path/Font-Awesome/otfs/Font Awesome 5 Free-Solid-900.otf" ~/.fonts/
+    ln -sf "$fonts_path/Font-Awesome/otfs/Font Awesome 5 Free-Regular-400.otf" ~/.fonts/
+    ln -sf "$fonts_path/Font-Awesome/otfs/Font Awesome 5 Brands-Regular-400.otf" ~/.fonts/
+
+    # Ionicons
+    if [ ! -d "$fonts_path/ionicons" ]; then
+        git clone --depth 1 https://github.com/ionic-team/ionicons && echo 'cloned'
+    fi
+    ln -sf $fonts_path/ionicons/docs/fonts/ionicons.ttf ~/.fonts/
+
+    # Typicons
+    if [ ! -d "$fonts_path/typicons.font" ]; then
+        git clone --depth 1 https://github.com/stephenhutchings/typicons.font && echo 'cloned'
+    fi
+    ln -sf $fonts_path/typicons.font/src/font/typicons.ttf ~/.fonts/
+
+    # Fura Code Nerd
+    if [ ! -d "$fonts_path/nerd-fonts" ]; then
+        git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git && echo 'cloned'
+    fi
+    ln -sf "$fonts_path/nerd-fonts/patched-fonts/FiraCode/Retina/complete/Fura Code Retina Nerd Font Complete.ttf" ~/.fonts/
+}
