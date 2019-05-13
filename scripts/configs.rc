@@ -3,8 +3,23 @@
 create_config_links() {
     configs_path=$BASE_PATH/config
 
-    ln -sf $configs_path/compton/compton.conf ~/.config
-    ln -sf $configs_path/i3 ~/.config
-    ln -sf $configs_path/i3status ~/.config
-    cp $configs_path/zsh/.zshrc ~/.zshrc
+    if [ -f "$HOME/.config/compton.conf" ]; then
+        rm ~/.config/compton.conf
+    fi
+    ln -s $configs_path/compton/compton.conf ~/.config
+
+    if [ -d "$HOME/.config/i3" ]; then
+        rm -rf ~/.config/i3
+    fi
+    ln -s $configs_path/i3 ~/.config
+
+    if [ -d "$HOME/.config/i3status" ]; then
+        rm -rf ~/.config/i3status
+    fi
+    ln -s $configs_path/i3status ~/.config
+
+    if [ -f "$HOME/.zshrc" ]; then
+        rm ~/.zshrc
+    fi
+    ln -s $configs_path/zsh/.zshrc ~/
 }

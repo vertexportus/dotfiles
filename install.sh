@@ -2,7 +2,7 @@
 
 CURRENT_SCRIPT=`realpath $0`
 BASE_PATH=`dirname $CURRENT_SCRIPT`
-$SCRIPTS=$BASE_PATH/scripts
+SCRIPTS=$BASE_PATH/scripts
 
 source $SCRIPTS/fonts.rc
 source $SCRIPTS/configs.rc
