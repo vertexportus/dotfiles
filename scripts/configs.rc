@@ -11,12 +11,12 @@ create_config_links() {
     if [ -d "$HOME/.config/i3" ]; then
         rm -rf ~/.config/i3
     fi
-    ln -s $configs_path/i3 ~/.config
+    ln -sf $configs_path/i3 ~/.config
 
     if [ -d "$HOME/.config/i3status" ]; then
         rm -rf ~/.config/i3status
     fi
-    ln -s $configs_path/i3status ~/.config
+    ln -sf $configs_path/i3status ~/.config
 
     if [ -f "$HOME/.zshrc" ]; then
         rm ~/.zshrc
