@@ -15,7 +15,14 @@ My personal linux configs
 - odrive (google drive auto-sync)
 - pasystray (audo management)
 - terminology (amazing terminal emulator)
+- zsh
+- oh-my-zsh
+- zsh-syntax-highlighting
 
 ## Needed environment variables
 
 GITHUB_NOTIFICATIONS_TOKEN=add_here_notifications_access_token
+
+## Optional environment variables
+
+SYSTEM_ICON='' (or any font-awesome icon)
