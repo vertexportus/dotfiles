@@ -23,3 +23,9 @@ create_config_links() {
     fi
     ln -s $configs_path/zsh/.zshrc ~/
 }
+
+check_env_vars() {
+    if [ -z "$GITHUB_NOTIFICATIONS_TOKEN" ]; then
+        echo 'warning: GITHUB_NOTIFICATIONS_TOKEN env var is not set!'
+    fi
+}

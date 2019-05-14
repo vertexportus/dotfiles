@@ -10,3 +10,4 @@ source $SCRIPTS/configs.rc
 # install fonts
 create_config_links
 install_fonts
+check_env_vars
