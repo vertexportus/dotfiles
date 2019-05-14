@@ -115,6 +115,12 @@ status.register('ping',
    color='#61AEEE')
 
 status.register('spotify',
+    status={
+        'play':'',
+        'stop':'',
+        'pause':''
+    },
+    format='{artist} - {title} {status}',
     format_no_player='')
 
 status.register('scratchpad',)
