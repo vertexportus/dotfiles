@@ -25,4 +25,6 @@ GITHUB_NOTIFICATIONS_TOKEN=add_here_notifications_access_token
 
 ## Optional environment variables
 
-SYSTEM_ICON='' (or any font-awesome icon)
+#### icons use FontAwesome 5 free
+SYSTEM_ICON=''
+PROMPT_ICON='ᐅ' 
