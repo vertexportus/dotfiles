@@ -26,6 +26,10 @@ create_config_links() {
         rm ~/.oh-my-zsh/custom/themes/pmuse.zsh-theme
     fi
     ln -s $configs_path/zsh/themes/pmuse.zsh-theme ~/.oh-my-zsh/custom/themes/
+    if [ -d "$HOME/.icons" ]; then
+        rm -rf ~/.icons
+    else
+    ln -sf $configs_path/icons ~/.icons
 }
 
 check_env_vars() {
