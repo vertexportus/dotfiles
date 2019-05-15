@@ -43,5 +43,6 @@ install_fonts() {
     if [ ! -d "$fonts_path/nerd-fonts" ]; then
         git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git && echo 'cloned'
     fi
-    ln -sf "$fonts_path/nerd-fonts/patched-fonts/FiraCode/Retina/complete/Fura Code Retina Nerd Font Complete.ttf" ~/.fonts/
+    ln -sf "$fonts_path/nerd-fonts/patched-fonts/FiraCode/Retina/complete/Fura Code Retina Nerd Font Complete.otf" ~/.fonts/
+    ln -sf "$fonts_path/nerd-fonts/patched-fonts/FiraCode/Regular/complete/Fura Code Regular Nerd Font Complete.otf" ~/.fonts/
 }
