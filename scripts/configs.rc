@@ -25,11 +25,12 @@ create_config_links() {
     if [ -f "$HOME/.oh-my-zsh/custom/themes/pmuse.zsh-theme" ]; then
         rm ~/.oh-my-zsh/custom/themes/pmuse.zsh-theme
     fi
-    sudo apt install -y moka-icon-theme arc-theme
     ln -s $configs_path/zsh/themes/pmuse.zsh-theme ~/.oh-my-zsh/custom/themes/
+
+    sudo apt install -y moka-icon-theme arc-theme
     if [ -d "$HOME/.icons" ]; then
         rm -rf ~/.icons
-    else
+    fi
     ln -sf $configs_path/icons ~/.icons
 }
 
