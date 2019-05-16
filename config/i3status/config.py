@@ -95,18 +95,20 @@ status.register('github',
     hints={'markup': 'pango'},
     update_error='<span color="#ff0000">!</span>',
     refresh_icon='<span color="#ff5f00">⟳</span>',
-    status={
-        'good': '✓',
-        'minor': '!',
-        'major': '!!',
-    },
-    colors={
-        'good': '#008700',
-        'minor': '#d7ff00',
-        'major': '#af0000',
-    },
     format=' [{status}][{unread_count}][{update_error}]',
     keyring_backend=PlaintextKeyring(),
+    status={
+        'none': '',
+        'minor': '!',
+        'major': '!!',
+        'critical': '!!!',
+    },
+    colors={
+        'none': '#22bb00',
+        'minor': '#d7ff00',
+        'major': '#af0000',
+        'critical': '#640000',
+    },
     log_level=5
 )
 
