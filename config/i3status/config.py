@@ -109,6 +109,7 @@ status.register('github',
         'major': '#af0000',
         'critical': '#640000',
     },
+    interval=300,
     log_level=5
 )
 
