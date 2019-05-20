@@ -6,7 +6,7 @@ default_border pixel 0
 font pango:Fira Code Light 8
 
 # default applications
-exec compton &
+exec dbus-launch compton -CG --config ~/.config/compton.conf &
 exec --no-startup-id jetbrains-toolbox --minimize
 exec --no-startup-id odrive
 exec --no-startup-id pasystray
