@@ -15,6 +15,7 @@ exec --no-startup-id nm-applet
 
 # specific application configs
 for_window [class="Peek"] floating enable
+#for_window [class="Kazam"] floating enable
 
 # dmenu (rafi)
 set $rofiTheme DarkBlue

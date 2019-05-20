@@ -62,10 +62,11 @@ status.register("battery",
 nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
 amd_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep amdgpu').read()
 if nvidia_in_use != '':
-    status.register('gpu_temp',
-        format=" {temp} °C",
-        color="#2be5c6",
-        alert_temp=60)
+    if os.popen('prime-select query | grep nvidia') != '':
+        status.register('gpu_temp',
+            format=" {temp} °C",
+            color="#2be5c6",
+            alert_temp=70)
 elif amd_in_use != '':
     status.register('amdgpu',
         format=' {temp} °C',
@@ -109,6 +110,7 @@ status.register('github',
         'major': '#af0000',
         'critical': '#640000',
     },
+    interval=300,
     log_level=5
 )
 
