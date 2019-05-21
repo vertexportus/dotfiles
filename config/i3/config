@@ -49,6 +49,12 @@ bindsym $mod+Shift+c [instance="floatpython"] scratchpad show, move position cen
 
 bindsym $mod+u exec terminology -B -t=nyanology -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/20" --name=floatpython -e python3
 
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down

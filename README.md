@@ -16,6 +16,7 @@ My personal linux configs
 - pasystray (audo management)
 - terminology (amazing terminal emulator)
 - zsh
+- playerctl
 - oh-my-zsh
 - zsh-syntax-highlighting
 
