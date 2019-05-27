@@ -10,6 +10,7 @@ My personal linux configs
 - feh (backgrounds)
 - rofi (dmenu replacement)
 - maim (for screenshots)
+- xclip
 - compton
 - jetbrains-toolbox (remove the exec from i3/config if not using this)
 - blueman-applet (for bluetooth management)
