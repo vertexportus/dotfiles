@@ -5,7 +5,9 @@ My personal linux configs
 ## Packages
 
 - i3 (i3wm)
-- i3pystatus ( currently using my own fork: https://github.com/vertexportus/i3pystatus )
+- i3pystatus ( github )
+- i3lock-fancy
+- feh (backgrounds)
 - rofi (dmenu replacement)
 - maim (for screenshots)
 - compton
