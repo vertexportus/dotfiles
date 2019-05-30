@@ -10,28 +10,36 @@ from keyrings.alt.file import PlaintextKeyring
 status = Status(logfile='$HOME/.logs/i3pystatus.log')
 
 status.register("clock",
-    format=" %H:%M:%S ",
+    format=" %H:%M",
     color='#C678DD',
-    interval=1,
+    interval=30,
     on_leftclick="/usr/bin/gsimplecal",)
 
 status.register("clock",
     format="  %a %d-%m-%Y ",
     color='#61AEEE',
-    interval=1,)
+    interval=3600,)
 
 status.register("pulseaudio",
     color_unmuted='#98C379',
     color_muted='#E06C75',
-    format_muted=' [muted]',
+    format_muted='',
     format=" {volume}%")
 
+status.register("external_ip",
+    format=" {country_code} {ip}",
+    format_hide=" {country_code}",
+    format_down="",
+    color="#8AE234",
+    color_down="#EF2929",
+    interval=600)
+
 status.register("network",
-   interface="eno1",
-   color_up="#8AE234",
-   color_down="#EF2929",
-   format_up=" {v4cidr}",
-   format_down="",)
+    interface="eno1",
+    color_up="#8AE234",
+    color_down="#EF2929",
+    format_up=" {v4cidr}",
+    format_down="",)
 
 has_wifi = os.popen('ip a | grep wlo1').read()
 if has_wifi != '':
@@ -111,7 +119,6 @@ status.register('github',
         'critical': '#640000',
     },
     interval=300,
-    log_level=5
 )
 
 status.register('ping',
@@ -124,7 +131,7 @@ status.register('spotify',
         'stop':'',
         'pause':''
     },
-    format='{artist} - {title} {status}',
+    format=' {artist} - {title} {status}',
     format_no_player='')
 
 status.register('scratchpad',)
