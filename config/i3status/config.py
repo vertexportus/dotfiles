@@ -136,7 +136,7 @@ status.register('spotify',
         'stop':'',
         'pause':''
     },
-    format=' {artist} - {title} {status}',
+    format=' {artist} {status}',
     format_no_player='')
 
 status.register('scratchpad',)
