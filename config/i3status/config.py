@@ -3,6 +3,7 @@
 import subprocess
 import os
 import os.path
+import netifaces
 
 from i3pystatus import Status
 from keyrings.alt.file import PlaintextKeyring
@@ -35,12 +36,15 @@ status.register("external_ip",
     color_down="#EF2929",
     interval=600)
 
-status.register("network",
-    interface="eno1",
-    color_up="#8AE234",
-    color_down="#EF2929",
-    format_up="",
-    format_down="",)
+interface_list = netifaces.interfaces()
+interface = filter(lambda x: 'en' in x,interface_list)
+for iff in interface:
+    status.register("network",
+        interface=iff,
+        color_up="#8AE234",
+        color_down="#EF2929",
+        format_up="",
+        format_down="",)
 
 has_wifi = os.popen('ip a | grep wlo1').read()
 if has_wifi != '':
