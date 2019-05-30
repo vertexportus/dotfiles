@@ -27,10 +27,11 @@ status.register("pulseaudio",
     format=" {volume}%")
 
 status.register("external_ip",
-    format=" {country_code} {ip}",
-    format_hide=" {country_code}",
+    format=" {country_code}",
+    format_hide=" {country_name} {ip}",
     format_down="",
-    color="#8AE234",
+    color="#8AC254",
+    color_hide="#8AE234",
     color_down="#EF2929",
     interval=600)
 
@@ -38,7 +39,7 @@ status.register("network",
     interface="eno1",
     color_up="#8AE234",
     color_down="#EF2929",
-    format_up=" {v4cidr}",
+    format_up="",
     format_down="",)
 
 has_wifi = os.popen('ip a | grep wlo1').read()
@@ -47,7 +48,7 @@ if has_wifi != '':
     interface="wlo1",
     color_up="#8AE234",
     color_down="#EF2929",
-    format_up=" {v4cidr}",
+    format_up="",
     format_down="",)
 
 status.register("battery",
