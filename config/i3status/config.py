@@ -17,20 +17,20 @@ status.register("clock",
     on_leftclick="/usr/bin/gsimplecal",)
 
 status.register("clock",
-    format="  %a %d-%m-%Y ",
+    format=" %a %d-%m-%Y ",
     color='#61AEEE',
     interval=3600,)
 
 status.register("pulseaudio",
     color_unmuted='#98C379',
     color_muted='#E06C75',
-    format_muted='',
-    format=" {volume}%")
+    format_muted='ﱝ',
+    format="墳 {volume}%")
 
 status.register("external_ip",
-    format=" {country_code}",
-    format_hide=" {country_name} {ip}",
-    format_down="",
+    format=" {country_code}",
+    format_hide=" {country_name} {ip}",
+    format_down="",
     color="#8AC254",
     color_hide="#8AE234",
     color_down="#EF2929",
@@ -43,8 +43,8 @@ for iff in interface:
         interface=iff,
         color_up="#8AE234",
         color_down="#EF2929",
-        format_up="",
-        format_down="",)
+        format_up="",
+        format_down="",)
 
 has_wifi = os.popen('ip a | grep wlo1').read()
 if has_wifi != '':
@@ -66,39 +66,39 @@ status.register("battery",
     charging_color="#E5E500",
     full_color="#D19A66",
     status={
-        "DIS": "",
-        "CHR": " ",
-        "FULL": " ",
+        "DIS": "",
+        "CHR": "",
+        "FULL": "",
     },
     not_present_text="")
 
-nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
-amd_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep amdgpu').read()
-if nvidia_in_use != '':
-    if os.popen('prime-select query | grep nvidia').read() != '':
-        status.register('gpu_temp',
-            format=" {temp} °C",
-            color="#2be5c6",
-            alert_temp=70)
-elif amd_in_use != '':
-    status.register('amdgpu',
-        format=' {temp} °C',
-        color="#2be5c6")
+# nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
+# amd_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep amdgpu').read()
+# if nvidia_in_use != '':
+# if os.popen('prime-select query | grep nvidia').read() != '':
+status.register('gpu_temp',
+    format="﨏 {temp} °C",
+    color="#2be5c6",
+    alert_temp=70)
+# elif amd_in_use != '':
+#     status.register('amdgpu',
+#         format=' {temp} °C',
+#         color="#2be5c6")
 
 status.register("temp",
-        format=" {temp} °C",
+        format="﨎 {temp} °C",
         lm_sensors_enabled=False,
         dynamic_color=True)
 
 status.register("cpu_usage",
     on_leftclick="terminology --name=htop -e 'htop' &",
-    format=" {usage}%",)
+    format="龍 {usage}%",)
 
 status.register("mem",
     color="#999999",
     warn_color="#E5E500",
     alert_color="#FF1919",
-    format=" {used_mem}/{total_mem} GB",
+    format=" {used_mem}/{total_mem} GB",
     divisor=1073741824,)
 
 github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')

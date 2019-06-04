@@ -2,14 +2,15 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 ## temps
-#bindsym Mod1+Return exec terminology
+#bindsym Mod1+Control+Return exec terminology
+#exec --no-startup-id polybar top
 
 #######################################
 ####### BASIC CONFIGS
 #######################################
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod1
+set $mod Mod4
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -22,7 +23,7 @@ new_float normal
 hide_edge_borders none
 
 # Font for window titles.
-font pango:Fira Code 10
+font pango:Fira Code Light 8
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -66,7 +67,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 
 # Lock screen
 bindsym $mod+Control+l exec i3lock-fancy -p
-exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy -p"
+#exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy -p"
 
 # reload the configuration file
 bindsym $mod+Shift+r reload
@@ -79,15 +80,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (Shift+s)uspend, (h)ibernate, (r)eboot, (s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit suspend, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -123,8 +124,8 @@ mode "resize" {
 #######################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -142,9 +143,8 @@ exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
+exec_always --no-startup-id sbxkb
+exec --no-startup-id start_conky
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -165,6 +165,10 @@ exec --no-startup-id clipit
 exec --no-startup-id systemd-run --on-calendar="*:0/15" --user -- \
     /usr/bin/feh --no-fehbg --bg-fill --randomize -r ~/gdrive/Personal/wallpapers
 exec /usr/bin/feh --no-fehbg --bg-fill --randomize -r ~/gdrive/Personal/wallpapers 
+
+# applications
+exec --no-startup-id odrive
+exec --no-startup-id jetbrains-toolbox --minimize
 
 #######################################
 ####### APP BINDINGS
@@ -271,14 +275,14 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:7"
+set $ws8 "8:8"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -316,6 +320,10 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
 assign [class="Google-chrome"] $ws1
+assign [class="jetbrains-phpstorm"] $ws2
+assign [class="Franz"] $ws4
+assign [class="Slack"] $ws4
+assign [class="TelegramDesktop"] $ws4
 
 #######################################
 ####### APP FLOAT ASSIGNMENT
@@ -359,7 +367,7 @@ for_window [urgent=latest] focus
 
 # floating scratchpads
 for_window [instance="floatconsole"] move scratchpad, move position center, border pixel 5
-exec terminology -B -t=nyanology -f=FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
+exec terminology -B -t=nyanology -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
 for_window [instance="floatpython"] move scratchpad, resize set 600 500, move position center, border pixel 5
@@ -373,7 +381,7 @@ bindsym $mod+u exec terminology -B -t=nyanology -f="FiraCode/16" -b=/usr/share/t
 #######################################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 12
 gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
@@ -429,44 +437,25 @@ mode "$mode_gaps_outer" {
 ####### I3 BAR
 #######################################
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
 bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	#strip_workspace_numbers yes
-
-    colors {
-        background #222D31
-        statusline #F9FAF9
-        separator  #454947
-
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #222D31 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
+        tray_output		primary
+        status_command 		python ~/.config/i3status/config.py
+        position 		top
+	workspace_buttons	yes
+	font pango: Fura Code Nerd Font 12
+    	colors {
+        	background #253941
+	        statusline #e7dfd9
+	        separator  #081419
+                # <colorclass>     <border>      <background>       <text>
+                focused_workspace  #2aa198         #073642          #eee895
+                active_workspace   #073642         #073642          #839496
+                inactive_workspace #002b36         #002b36          #586e75
+                urgent_workspace   #cb4b16         #dc322f          #fdf6e3
+	}
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
-
-# Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
-
-  client.background       #2B2C2B
