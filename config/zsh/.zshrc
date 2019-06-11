@@ -20,3 +20,6 @@ alias ll="ls -la"
 # vars and profile
 export EDITOR=/usr/bin/vim
 emulate sh -c '. ~/.profile'
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
