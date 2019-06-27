@@ -315,6 +315,10 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
+# Move workspace on monitors
+bindsym $mod+Alt+Right move workspace to output right
+bindsym $mod+Alt+Left move workspace to output left
+
 #######################################
 ####### WORKSPACE MONITOR ASSIGNMENT
 #######################################
