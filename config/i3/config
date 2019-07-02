@@ -341,7 +341,7 @@ assign [class="jetbrains-datagrip"] $ws3
 assign [class="Franz"] $ws4
 assign [class="Slack"] $ws4
 assign [class="TelegramDesktop"] $ws4
-assign [class="(?i)spotify"] $ws6
+# for_window [class="spotify"] move to workspace $ws5
 
 #######################################
 ####### APP FLOAT ASSIGNMENT
