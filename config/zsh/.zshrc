@@ -6,7 +6,7 @@ ZSH_THEME="pmuse"
 # general configs
 ENABLE_CORRECTION="true"
 # plugins
-plugins=(git command-not-found composer common-aliases copyfile docker encode64 jsontools lol mix ng npm sudo systemd urltools web-search)
+plugins=(git composer common-aliases copyfile docker encode64 jsontools lol mix ng npm sudo systemd urltools web-search)
 
 # keychain
 eval $(keychain --eval --quick --quiet --confhost --noask)
