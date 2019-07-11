@@ -91,7 +91,7 @@ status.register("temp",
         dynamic_color=True)
 
 status.register("cpu_usage",
-    on_leftclick="terminology --name=htop -e 'htop' &",
+    on_leftclick="deepin-system-monitor &",
     format="龍 {usage}%",)
 
 status.register("mem",
