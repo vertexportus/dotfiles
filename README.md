@@ -22,6 +22,7 @@ My personal linux configs
 - playerctl
 - oh-my-zsh
 - zsh-syntax-highlighting
+- deepin-system-monitor
 
 ## Needed environment variables
 
