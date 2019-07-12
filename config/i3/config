@@ -386,15 +386,20 @@ for_window [urgent=latest] focus
 #######################################
 
 # floating scratchpads
-for_window [instance="floatconsole"] move scratchpad, move position center, border pixel 5
-exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
+# for_window [instance="floatconsole"] move scratchpad, move position center, border pixel 5
+# exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
+# bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
+
+for_window [instance="floatconsole"] move scratchpad, resize set 1000 800, move position center, border pixel 0
+exec cool-retro-term -p "Portus TV" --name floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
 for_window [instance="floatpython"] move scratchpad, resize set 600 500, move position center, border pixel 5
 exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
 bindsym $mod+Shift+c [instance="floatpython"] scratchpad show, move position center
 
-bindsym $mod+u exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
+bindsym $mod+u exec cool-retro-term -p "Portus TV" --name floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
+# bindsym $mod+u exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
 
 #######################################
 ####### I3 GAPS
