@@ -23,6 +23,7 @@ My personal linux configs
 - oh-my-zsh
 - zsh-syntax-highlighting
 - deepin-system-monitor
+- retro-cool-term
 
 ## Needed environment variables
 
