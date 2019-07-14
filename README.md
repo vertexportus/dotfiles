@@ -24,6 +24,8 @@ My personal linux configs
 - zsh-syntax-highlighting
 - deepin-system-monitor
 - retro-cool-term
+- geoclue
+- redshift
 
 ## Needed environment variables
 
@@ -34,3 +36,16 @@ GITHUB_NOTIFICATIONS_TOKEN=add_here_notifications_access_token
 #### icons use FontAwesome 5 free
 SYSTEM_ICON=''
 PROMPT_ICON='ᐅ' 
+
+## Additional (manual) configs
+
+#### Redshift geoclue access
+
+add to /etc/geoclue/geoclue.conf:
+
+```
+[redshift]
+allowed=true
+system=false
+users=
+```
