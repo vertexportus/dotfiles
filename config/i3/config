@@ -144,7 +144,7 @@ exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
-exec --no-startup-id redshift
+exec --no-startup-id redshift &
 exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky
 exec_always --no-startup-id ff-theme-util
@@ -391,7 +391,7 @@ for_window [urgent=latest] focus
 # exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
 # bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
-for_window [instance="floatconsole"] move scratchpad, resize set 1000 800, move position center, border pixel 0
+for_window [instance="floatconsole"] move scratchpad, resize set 1100 800, move position center, border pixel 0
 exec cool-retro-term -p "Portus TV" --name floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
