@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+
+import sys
+
+decimal_time = float(sys.argv[1])
+hours = int(decimal_time)
+minutes_raw = ((decimal_time - hours) * 60)
+minutes = int(round(minutes_raw))
+
+print(f"{hours}h{minutes}m")
