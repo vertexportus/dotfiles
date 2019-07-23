@@ -34,7 +34,7 @@ status.register("external_ip",
     color="#8AC254",
     color_hide="#8AE234",
     color_down="#EF2929",
-    interval=600)
+    interval=60)
 
 interface_list = netifaces.interfaces()
 interface = filter(lambda x: 'en' in x,interface_list)
