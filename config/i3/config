@@ -379,6 +379,9 @@ for_window [class="odrive"] floating enable border normal
 for_window [class="Blueman-manager"] floating enable border normal
 for_window [class="deepin-system-monitor"] floating enable border normal
 
+# wine apps
+for_window [instance="battle.net.exe"] floating enable border normal
+
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
