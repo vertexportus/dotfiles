@@ -23,3 +23,6 @@ emulate sh -c '. ~/.profile'
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
     source /usr/share/nvm/init-nvm.sh
 fi
+
+# direnv
+eval "$(direnv hook zsh)"

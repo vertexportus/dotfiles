@@ -1,3 +1,63 @@
 #!/usr/bin/env bash
+bin_pwd=$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )
+source $bin_pwd/lib/utils.rc
 
-source ../lib/util.rc
+## checks
+echo ''
+if [ -d .git ]; then
+    USE_GPG=0
+    if [ -x "$(command -v gpg)" ]; then
+        USE_GPG=1
+    else
+        echo "${YELLOW}GPG is not installed, so not using gpgsigning${NC}"
+        echo ''
+    fi
+
+    read -rp "${ASK_QUESTION}Name:${BREAK}" NAME
+    echo ''
+
+    if [ $USE_GPG -eq 1 ]; then
+        gpg_keys_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "[A-F0-9]{40}"))
+        gpg_emails_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "<.*@.*>" | sed "s/[<>]//g"))
+        echo "0 <NONE>"
+        for ((i=0; i<${#gpg_keys_list[@]}; ++i)); do
+            a=$(($i + 1))
+            echo "$a" "${gpg_emails_list[i]}" # "${gpg_keys_list[i]}"
+        done
+        echo ''
+        read -rp "${ASK_QUESTION}Select one as Email/GPG:${BREAK}" EMAIL_INDEX
+        if ! [ $EMAIL_INDEX -eq 0 ]; then
+            index=$(($EMAIL_INDEX - 1))
+            EMAIL="${gpg_emails_list[$index]}"
+            GPG_KEY="${gpg_keys_list[$index]}"
+            echo $EMAIL
+        else
+            USE_GPG=0
+            read -rp "${ASK_QUESTION}Email:${BREAK}" EMAIL
+        fi
+    else
+        USE_GPG=0
+        read -rp "${ASK_QUESTION}Email:${BREAK}" EMAIL
+    fi
+    
+    echo ''
+    GPG_OUTPUT=$([ $USE_GPG -eq 0 ] && echo "No" || echo "Yes")
+    echo -e $" Name.........................${LIGHTCYAN}${NAME}${NC}"
+    echo -e $" Email........................${LIGHTCYAN}${EMAIL}${NC}"
+    echo -e $" GPG..........................${LIGHTCYAN}${GPG_OUTPUT}${NC}"
+    echo ''
+    read -rp "${ASK_QUESTION}Confirm config? [y/n]:${BREAK}" CONFIRM
+    if [[ ${CONFIRM,,} =~ ^(y|yes|j|ja|s|si|sim|o|oui)$ ]]; then
+        echo "${GREEN} git config SET ${NC}"
+        git config user.name "$NAME"
+        git config user.email "$EMAIL"
+        if [ $USE_GPG -eq 1 ]; then
+            git config user.signingkey "$GPG_KEY"
+            git config commit.gpgsign true
+        fi
+    else
+        echo "${RED} git config NOT SET ${NC}"
+    fi
+else
+  echo "${RED} Current folder is not a git repository ${NC}"
+fi;
