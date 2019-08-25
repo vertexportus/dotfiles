@@ -4,7 +4,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # theme
 ZSH_THEME="pmuse"
 # general configs
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 # plugins
 plugins=(git composer common-aliases copyfile docker encode64 jsontools lol mix ng npm sudo systemd urltools web-search)
 
