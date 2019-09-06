@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 #
+import logging
 import subprocess
 import os
 import os.path
@@ -75,20 +76,26 @@ status.register("battery",
 # nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
 # amd_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep amdgpu').read()
 # if nvidia_in_use != '':
+nvidia_in_use = os.popen('glxinfo | grep NVIDIA').read() != ''
+amd_in_use = os.popen('glxinfo | grep AMD').read() != ''
 # if os.popen('prime-select query | grep nvidia').read() != '':
-status.register('gpu_temp',
-    format="﨏 {temp} °C",
-    color="#2be5c6",
-    alert_temp=70)
-# elif amd_in_use != '':
-#     status.register('amdgpu',
-#         format=' {temp} °C',
-#         color="#2be5c6")
+if nvidia_in_use:
+    status.register('gpu_temp',
+        format="﨏 {temp} °C",
+        color="#2be5c6",
+        alert_temp=70)
+elif amd_in_use:
+    status.register('amdgpu',
+        format=' {temp} °C',
+        color="#2be5c6",
+        log_level=logging.DEBUG)
 
 status.register("temp",
         format="﨎 {temp} °C",
+        hints={"markup": "pango"},
         lm_sensors_enabled=False,
-        dynamic_color=True)
+        dynamic_color=True,
+        log_level=logging.DEBUG)
 
 status.register("cpu_usage",
     on_leftclick="deepin-system-monitor &",
@@ -99,7 +106,8 @@ status.register("mem",
     warn_color="#E5E500",
     alert_color="#FF1919",
     format=" {used_mem}/{total_mem} GB",
-    divisor=1073741824,)
+    divisor=1073741824,
+    log_level=logging.DEBUG)
 
 github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
 status.register('github',
@@ -123,12 +131,13 @@ status.register('github',
         'major': '#af0000',
         'critical': '#640000',
     },
-    interval=300,
+    interval=60,
 )
 
 status.register('ping',
    format_disabled='-ping-',
-   color='#61AEEE')
+   color='#61AEEE',
+   log_level=logging.DEBUG)
 
 status.register('spotify',
     status={
