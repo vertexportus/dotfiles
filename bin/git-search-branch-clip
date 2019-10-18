@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
-branch=$(git branch | grep $1 | tr -d ' ')
-echo $branch
-echo $branch | tr -d '\n' | xclip -selection c
+branches=($(git branch | grep $1 | tr -d '*' | tr -d ' '))
+len=${#branches[@]}
+
+if [ $len -eq 0 ]; then
+    echo "no branch found"
+elif [ $len -lt 2 ]; then
+    echo $branches
+    echo $branches | tr -d '\n' | xclip -selection c
+else
+    for index in ${!branches[@]}; do
+        echo ' ' $((index+1))')' "${branches[index]}"
+    done
+    read -n 1 -s choice
+    choice=$((choice-1))
+    echo ${branches[$choice]}
+    echo ${branches[$choice]} | tr -d '\n' | xclip -selection c
+fi
