@@ -284,14 +284,14 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:7"
-set $ws8 "8:8"
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -397,20 +397,20 @@ for_window [urgent=latest] focus
 #######################################
 
 # floating scratchpads
-# for_window [instance="floatconsole"] move scratchpad, move position center, border pixel 5
-# exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
-# bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
-
-for_window [instance="floatconsole"] move scratchpad, resize set 1100 800, move position center, border pixel 0
-exec cool-retro-term -p "Portus TV" --name floatconsole
+for_window [instance="floatconsole"] move scratchpad, move position center, border pixel 5
+exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
+
+#for_window [instance="floatconsole"] move scratchpad, resize set 1100 800, move position center, border pixel 0
+#exec cool-retro-term -p "Portus TV" --name floatconsole
+#bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
 for_window [instance="floatpython"] move scratchpad, resize set 600 500, move position center, border pixel 5
 exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
 bindsym $mod+Shift+c [instance="floatpython"] scratchpad show, move position center
 
-bindsym $mod+u exec cool-retro-term -p "Portus TV" --name floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
-# bindsym $mod+u exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
+bindsym $mod+u exec terminology -B -t=pikalogy -f="FiraCode/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
+#bindsym $mod+u exec cool-retro-term -p "Portus TV" --name floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
 
 #######################################
 ####### I3 GAPS
