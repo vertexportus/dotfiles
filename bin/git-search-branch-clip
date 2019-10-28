@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
+if [[ $1 == '-r' ]]; then
+    search_value=$2
+    r="-r"
+else
+    search_value=$1
+    r=""
+fi
 
-branches=($(git branch | grep $1 | tr -d '*' | tr -d ' '))
+branches=($(git branch ${r} | grep $search_value | tr -d '*' | tr -d ' '))
 len=${#branches[@]}
 
 if [ $len -eq 0 ]; then
