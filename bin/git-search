@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+function _parse_branch() {
+    if [ $run_branch -eq 1 ]; then
+        git checkout $1
+    else
+        echo $1 | tr -d '\n' | xclip -selection c
+    fi
+}
+
+r=""
+run_branch=0
+while [[ "$#" -gt 0 ]]; do case $1 in
+  -o|--origin) r="-r";;
+  -b|--branch) run_branch=1;;
+  -*) echo "Unknown parameter passed: $1"; exit 1;;
+  *) search_value=$1;;
+esac; shift; done
+
+branches=($(git branch ${r} | grep $search_value | tr -d '*' | tr -d ' '))
+len=${#branches[@]}
+
+if [ $len -eq 0 ]; then
+    echo "no branch found"
+elif [ $len -lt 2 ]; then
+    echo $branches
+    _parse_branch $branches
+else
+    for index in ${!branches[@]}; do
+        echo ' ' $((index+1))')' "${branches[index]}"
+    done
+    read -n 1 -s choice
+    choice=$((choice-1))
+    echo ${branches[$choice]}
+    _parse_branch ${branches[$choice]}
+fi
