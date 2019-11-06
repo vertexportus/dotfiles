@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 
 function _parse_branch() {
-    if [ $run_branch -eq 1 ]; then
-        git checkout $1
-    else
-        echo $1 | tr -d '\n' | xclip -selection c
-    fi
+    case $process in
+        "clip") echo $1 | tr -d '\n' | xclip -selection c;;
+        "checkout") git checkout $1;;
+        "merge") git merge $1;;
+    esac;
 }
 
 r=""
-run_branch=0
+process="clip"
 while [[ "$#" -gt 0 ]]; do case $1 in
   -o|--origin) r="-r";;
-  -b|--branch) run_branch=1;;
+  -c|--checkout) process="checkout";;
+  -m|--merge) process="merge";;
   -*) echo "Unknown parameter passed: $1"; exit 1;;
   *) search_value=$1;;
 esac; shift; done
