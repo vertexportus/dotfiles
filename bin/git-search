@@ -1,10 +1,22 @@
 #!/usr/bin/env bash
 
+. "${BASH_SOURCE%/*}/utils/colors.sh"
+
+function _ask_do_merge() {
+    local current_branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
+    read -rp " ${ASK_QUESTION} ${CYAN}Confirm merge from ${PURPLE}'${1}'${CYAN} into ${PURPLE}'${current_branch}'${CYAN} [y/n]:${BREAK}" INSTALL
+    if [[ ${INSTALL,,} =~ ^(y|yes|j|ja|s|si|sim|o|oui)$ ]]; then
+        git merge $1
+    else
+        echo "${RED}NOT MERGED!${NC}"
+    fi
+}
+
 function _parse_branch() {
     case $process in
         "clip") echo $1 | tr -d '\n' | xclip -selection c;;
         "checkout") git checkout $1;;
-        "merge") git merge $1;;
+        "merge") _ask_do_merge $1;;
     esac;
 }
 
