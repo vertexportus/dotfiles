@@ -15,7 +15,7 @@ function _ask_do_merge() {
 function _parse_branch() {
     case $process in
         "clip") echo $1 | tr -d '\n' | xclip -selection c;;
-        "checkout") git checkout $1;;
+        "branch") git checkout $1;;
         "merge") _ask_do_merge $1;;
     esac;
 }
@@ -24,9 +24,9 @@ r=""
 process="clip"
 while [[ "$#" -gt 0 ]]; do case $1 in
   -o|--origin) r="-r";;
-  -c|--checkout) process="checkout";;
+  -b|--branch) process="branch";;
   -m|--merge) process="merge";;
-  --clip) process="clip";;
+  -c|--clip) process="clip";;
   -*) echo "Unknown parameter passed: $1"; exit 1;;
   *) search_value=$1;;
 esac; shift; done
