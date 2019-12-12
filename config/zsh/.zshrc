@@ -1,5 +1,4 @@
 export ZSH="/home/vertexportus/.oh-my-zsh"
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # theme
 ZSH_THEME="pmuse"
@@ -30,3 +29,6 @@ fi
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# zsh highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
