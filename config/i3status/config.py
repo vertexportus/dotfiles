@@ -28,14 +28,14 @@ status.register("pulseaudio",
     format_muted='ﱝ',
     format="墳 {volume}%")
 
-status.register("external_ip",
-    format=" {country_code}",
-    format_hide=" {country_name} {ip}",
-    format_down="",
-    color="#8AC254",
-    color_hide="#8AE234",
-    color_down="#EF2929",
-    interval=60)
+# status.register("external_ip",
+#     format=" {country_code}",
+#     format_hide=" {country_name} {ip}",
+#     format_down="",
+#     color="#8AC254",
+#     color_hide="#8AE234",
+#     color_down="#EF2929",
+#     interval=60)
 
 interface_list = netifaces.interfaces()
 interface = filter(lambda x: 'en' in x,interface_list)
@@ -73,33 +73,30 @@ status.register("battery",
     },
     not_present_text="")
 
-# nvidia_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep nvidia').read()
-# amd_in_use = os.popen('lspci -nnk | grep -i vga -A3 | grep amdgpu').read()
-# if nvidia_in_use != '':
 nvidia_in_use = os.popen('glxinfo | grep NVIDIA').read() != ''
 amd_in_use = os.popen('glxinfo | grep AMD').read() != ''
 # if os.popen('prime-select query | grep nvidia').read() != '':
-if nvidia_in_use:
-    status.register('gpu_temp',
-        format="﨏 {temp} °C",
-        color="#2be5c6",
-        alert_temp=70)
-elif amd_in_use:
-    status.register('amdgpu',
-        format=' {temp} °C',
-        color="#2be5c6",
-        log_level=logging.DEBUG)
+# if nvidia_in_use:
+#     status.register('gpu_temp',
+#         format="﨏 {temp} °C",
+#         color="#2be5c6",
+#         alert_temp=70)
+# elif amd_in_use:
+#     status.register('amdgpu',
+#         format=' {temp} °C',
+#         color="#2be5c6",
+#         log_level=logging.DEBUG)
 
 status.register("temp",
         format="﨎 {temp} °C",
-        hints={"markup": "pango"},
-        lm_sensors_enabled=False,
-        dynamic_color=True,
-        log_level=logging.DEBUG)
+        hints={"markup": "pango"})
+        # lm_sensors_enabled=False,
+        # dynamic_color=True,
+        # log_level=logging.DEBUG)
 
-status.register("cpu_usage",
-    on_leftclick="deepin-system-monitor &",
-    format="龍 {usage}%",)
+# status.register("cpu_usage",
+#     on_leftclick="deepin-system-monitor &",
+#     format="龍 {usage}%",)
 
 status.register("mem",
     color="#999999",
@@ -109,33 +106,33 @@ status.register("mem",
     divisor=1073741824,
     log_level=logging.DEBUG)
 
-github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
-status.register('github',
-    notify_status=True,
-    notify_unread=True,
-    access_token=github_access_token,
-    hints={'markup': 'pango'},
-    update_error='<span color="#ff0000">!</span>',
-    refresh_icon='<span color="#ff5f00">⟳</span>',
-    format=' [{status}][{unread_count}][{update_error}]',
-    keyring_backend=PlaintextKeyring(),
-    status={
-        'none': '',
-        'minor': '!',
-        'major': '!!',
-        'critical': '!!!',
-    },
-    colors={
-        'none': '#22bb00',
-        'minor': '#d7ff00',
-        'major': '#af0000',
-        'critical': '#640000',
-    },
-    interval=60,
-)
+# github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
+# status.register('github',
+#     notify_status=True,
+#     notify_unread=True,
+#     access_token=github_access_token,
+#     hints={'markup': 'pango'},
+#     update_error='<span color="#ff0000">!</span>',
+#     refresh_icon='<span color="#ff5f00">⟳</span>',
+#     format=' [{status}][{unread_count}][{update_error}]',
+#     keyring_backend=PlaintextKeyring(),
+#     status={
+#         'none': '',
+#         'minor': '!',
+#         'major': '!!',
+#         'critical': '!!!',
+#     },
+#     colors={
+#         'none': '#22bb00',
+#         'minor': '#d7ff00',
+#         'major': '#af0000',
+#         'critical': '#640000',
+#     },
+#     interval=60,
+# )
 
 status.register('ping',
-   format_disabled='-ping-',
+   format_disabled='-down-',
    color='#61AEEE',
    log_level=logging.DEBUG)
 
@@ -146,7 +143,8 @@ status.register('spotify',
         'pause':''
     },
     format=' {artist} {status}',
-    format_no_player='')
+    format_not_running=''
+    )
 
 status.register('scratchpad',)
 
