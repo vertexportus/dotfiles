@@ -154,7 +154,7 @@ exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id autorandr --change
+exec_always --no-startup-id autorandr --change --skip-options gamma
 
 # auth
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
