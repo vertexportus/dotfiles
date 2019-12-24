@@ -26,6 +26,7 @@ My personal linux configs
 - retro-cool-term
 - geoclue
 - redshift
+- autorandr
 
 ## Needed environment variables
 
