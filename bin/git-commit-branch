@@ -2,9 +2,10 @@
 
 while [[ "$#" -gt 0 ]]; do case $1 in
   -m|--message) message=$2; shift;;
+  -ma) message=$2; add=1; shift;;
   *) echo "Unknown parameter passed: $1"; exit 1;;
 esac; shift; done
 
 branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
-# echo "$branch : $message"
-git commit -m "$branch : $message"
+if [ $add -eq 1 ]; then params="-ma"; else params="-m"; fi
+echo git commit $params "$branch : $message"
