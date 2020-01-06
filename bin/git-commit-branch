@@ -8,4 +8,4 @@ esac; shift; done
 
 branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
 if [ $add -eq 1 ]; then params="-ma"; else params="-m"; fi
-echo git commit $params "$branch : $message"
+git commit $params "$branch : $message"
