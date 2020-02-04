@@ -16,7 +16,7 @@ if [ -d .git ]; then
     read -rp "${ASK_QUESTION}Name:${BREAK}" NAME
     echo ''
 
-    if [ $USE_GPG -eq 1 ]; then
+    if [[ $USE_GPG -eq 1 ]]; then
         gpg_keys_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "[A-F0-9]{40}"))
         gpg_emails_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "<.*@.*>" | sed "s/[<>]//g"))
         echo "0 <NONE>"
@@ -41,7 +41,7 @@ if [ -d .git ]; then
     fi
     
     echo ''
-    GPG_OUTPUT=$([ $USE_GPG -eq 0 ] && echo "No" || echo "Yes")
+    GPG_OUTPUT=$([[ $USE_GPG -eq 0 ]] && echo "No" || echo "Yes")
     echo -e $" Name.........................${LIGHTCYAN}${NAME}${NC}"
     echo -e $" Email........................${LIGHTCYAN}${EMAIL}${NC}"
     echo -e $" GPG..........................${LIGHTCYAN}${GPG_OUTPUT}${NC}"
@@ -51,7 +51,7 @@ if [ -d .git ]; then
         echo "${GREEN} git config SET ${NC}"
         git config user.name "$NAME"
         git config user.email "$EMAIL"
-        if [ $USE_GPG -eq 1 ]; then
+        if [[ $USE_GPG -eq 1 ]]; then
             git config user.signingkey "$GPG_KEY"
             git config commit.gpgsign true
         fi

@@ -7,5 +7,5 @@ while [[ "$#" -gt 0 ]]; do case $1 in
 esac; shift; done
 
 branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
-if [ $add -eq 1 ]; then params="-am"; else params="-m"; fi
+if [[ $add -eq 1 ]]; then params="-am"; else params="-m"; fi
 git commit $params "$branch : $message"
