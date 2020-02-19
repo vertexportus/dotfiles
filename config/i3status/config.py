@@ -76,16 +76,16 @@ status.register("battery",
 nvidia_in_use = os.popen('glxinfo | grep NVIDIA').read() != ''
 amd_in_use = os.popen('glxinfo | grep AMD').read() != ''
 # if os.popen('prime-select query | grep nvidia').read() != '':
-# if nvidia_in_use:
-#     status.register('gpu_temp',
-#         format="﨏 {temp} °C",
-#         color="#2be5c6",
-#         alert_temp=70)
-# elif amd_in_use:
-#     status.register('amdgpu',
-#         format=' {temp} °C',
-#         color="#2be5c6",
-#         log_level=logging.DEBUG)
+if nvidia_in_use:
+    status.register('gpu_temp',
+        format="﨏 {temp} °C",
+        color="#2be5c6",
+        alert_temp=70)
+elif amd_in_use:
+    status.register('amdgpu',
+        format=' {temp} °C',
+        color="#2be5c6",
+        log_level=logging.DEBUG)
 
 status.register("temp",
         format="﨎 {temp} °C",
@@ -94,9 +94,9 @@ status.register("temp",
         # dynamic_color=True,
         # log_level=logging.DEBUG)
 
-# status.register("cpu_usage",
-#     on_leftclick="deepin-system-monitor &",
-#     format="龍 {usage}%",)
+status.register("cpu_usage",
+    on_leftclick="deepin-system-monitor &",)
+    # format="龍 {usage}%",)
 
 status.register("mem",
     color="#999999",
@@ -106,30 +106,30 @@ status.register("mem",
     divisor=1073741824,
     log_level=logging.DEBUG)
 
-# github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
-# status.register('github',
-#     notify_status=True,
-#     notify_unread=True,
-#     access_token=github_access_token,
-#     hints={'markup': 'pango'},
-#     update_error='<span color="#ff0000">!</span>',
-#     refresh_icon='<span color="#ff5f00">⟳</span>',
-#     format=' [{status}][{unread_count}][{update_error}]',
-#     keyring_backend=PlaintextKeyring(),
-#     status={
-#         'none': '',
-#         'minor': '!',
-#         'major': '!!',
-#         'critical': '!!!',
-#     },
-#     colors={
-#         'none': '#22bb00',
-#         'minor': '#d7ff00',
-#         'major': '#af0000',
-#         'critical': '#640000',
-#     },
-#     interval=60,
-# )
+github_access_token = os.environ.get('GITHUB_NOTIFICATIONS_TOKEN')
+status.register('github',
+    notify_status=True,
+    notify_unread=True,
+    access_token=github_access_token,
+    hints={'markup': 'pango'},
+    update_error='<span color="#ff0000">!</span>',
+    refresh_icon='<span color="#ff5f00">⟳</span>',
+    format=' [{status}][{unread_count}][{update_error}]',
+    keyring_backend=PlaintextKeyring(),
+    status={
+        'none': '',
+        'minor': '!',
+        'major': '!!',
+        'critical': '!!!',
+    },
+    colors={
+        'none': '#22bb00',
+        'minor': '#d7ff00',
+        'major': '#af0000',
+        'critical': '#640000',
+    },
+    interval=60,
+)
 
 status.register('ping',
    format_disabled='-down-',
@@ -143,7 +143,7 @@ status.register('spotify',
         'pause':''
     },
     format=' {artist} {status}',
-    format_not_running=''
+    # format_not_running=''
     )
 
 status.register('scratchpad',)
