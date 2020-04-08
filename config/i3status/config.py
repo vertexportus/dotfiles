@@ -75,7 +75,6 @@ status.register("battery",
 
 nvidia_in_use = os.popen('glxinfo | grep NVIDIA').read() != ''
 amd_in_use = os.popen('glxinfo | grep AMD').read() != ''
-# if os.popen('prime-select query | grep nvidia').read() != '':
 if nvidia_in_use:
     status.register('gpu_temp',
         format="﨏 {temp} °C",
