@@ -1,0 +1,13 @@
+installer
+
+pacman-mirrors -c Brazil,United_states
+
+system
+
+sudo systemctl enable NetworkManager
+
+pacman -Syyu
+yay -S vivaldi vivaldi-ffmpeg-codecs
+pacman -R vi palemoon-bin
+pacman -S vim feh rofi main xclip compton playerctl terminology deepin-system-monitor geoclue redshift autorandr pasystray blueman 
+ln -s /usr/bin/vim /usr/bin/vi
