@@ -80,11 +80,11 @@ if nvidia_in_use:
         format="﨏 {temp} °C",
         color="#2be5c6",
         alert_temp=70)
-elif amd_in_use:
-    status.register('amdgpu',
-        format=' {temp} °C',
-        color="#2be5c6",
-        log_level=logging.DEBUG)
+# if amd_in_use:
+#     status.register('amdgpu',
+#         format=' {temp} °C',
+#         color="#2be5c6",
+#         log_level=logging.DEBUG)
 
 status.register("temp",
         format="﨎 {temp} °C",
