@@ -58,7 +58,7 @@ set_from_resource $term_color15    color15
 #######################################
 
 # start a terminal
-bindsym $mod+Return exec terminology
+bindsym $mod+Return exec terminology -f="FuraCode Nerd Font/14"
 
 # kill focused window
 bindsym $mod+Shift+q kill
