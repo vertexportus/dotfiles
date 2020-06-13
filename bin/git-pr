@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-#   https://github.com/RepairQ/RepairQ/pull/new/CSMAC-23/CSMAC-50_customer_info
 remote_url=$(git config --get remote.origin.url)
 if [[ $remote_url =~ "github.com" ]]; then
     current_branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
