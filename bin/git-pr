@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#   https://github.com/RepairQ/RepairQ/pull/new/CSMAC-23/CSMAC-50_customer_info
+remote_url=$(git config --get remote.origin.url)
+if [[ $remote_url =~ "github.com" ]]; then
+    current_branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
+    base_url=$(echo $remote_url | cut -d'@' -f 2 | tr ':' '/' | sed -r 's/.git//g')
+    xdg-open "https://${base_url}/pull/new/${current_branch}"
+else
+    echo "not github :("
+fi
