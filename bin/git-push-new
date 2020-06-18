@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+current_branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
+git push -u origin $current_branch
