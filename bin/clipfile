@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-cat $1 | xclip -selection c
+while [[ "$#" -gt 0 ]]; do case $1 in
+  -o) out=1; file=$2; shift;;
+  *) out=0; file=$1;;
+esac; shift; done
+
+if [ $out -eq 1 ]; then xclip -selection c -o > $file;
+else cat $file | xclip -selection c; fi
