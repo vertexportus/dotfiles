@@ -400,7 +400,7 @@ for_window [urgent=latest] focus
 #######################################
 
 # floating scratchpads
-for_window [instance="floatconsole"] move scratchpad, resize set 1300 900, move position center, border pixel 1
+for_window [instance="floatconsole"] move scratchpad, resize set 1850 1024, move position center, border pixel 1
 exec terminology -B -t=pikalogy -f="FuraCode Nerd Font/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
