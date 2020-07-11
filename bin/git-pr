@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
+bin_pwd=$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )
+source $bin_pwd/lib/utils.rc
 
 remote_url=$(git config --get remote.origin.url)
 if [[ $remote_url =~ "github.com" ]]; then
     current_branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
     base_branch=$(git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')
+    read -rp "${ASK_QUESTION}confirm base branch: ${YELLOW}${base_branch} ${NC}(type new branch or leave empty to confirm)${BREAK}" CONFIRM_BASE_BRANCH
+    if [[ ! -z "$CONFIRM_BASE_BRANCH" ]]; then base_branch=$CONFIRM_BASE_BRANCH; fi
     base_url=$(echo $remote_url | cut -d'@' -f 2 | tr ':' '/' | sed -r 's/.git//g')
     xdg-open "https://${base_url}/compare/${base_branch}...${current_branch}/?expand=1&title=[${current_branch}]&body="
 else
