@@ -10,19 +10,27 @@ fi
 
 # figure out params
 out=0;
+append=0;
 while [[ "$#" -gt 0 ]]; do case $1 in
-  -o) out=1; file=$2; shift;;
+  -o) out=1;;
+  -a) append=1;;
   *) file=$1;;
 esac; shift; done
 
 # do logic
 if [ $out -eq 1 ]; then
   do=1
-  if [ -f "$file" ]; then
+  if [ -f "$file" ] && [ $append -eq 0 ]; then
     read -rp "${ASK_QUESTION}file '${file}' already exists. override? [y/n]:${BREAK}" DO_IT
     if [[ ${DO_IT,,} =~ ^(y|yes|j|ja|s|si|sim|o|oui)$ ]]; then do=1; else do=0; fi
   fi
-  if [[ do -eq 1 ]]; then xclip -selection c -o > $file; fi
+  if [[ $do -eq 1 ]]; then
+    result=$(xclip -selection c -o)
+    if [[ $append -eq 0 ]]; then echo $result > $file;
+    else
+      echo $result >> $file
+    fi
+  fi
 else
   if [ ! -f "$file" ]; then
     echo "${RED} file '${file}' does not exist ${NC}"
