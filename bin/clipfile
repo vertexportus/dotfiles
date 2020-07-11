@@ -1,9 +1,32 @@
 #!/usr/bin/env bash
+bin_pwd=$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )
+source $bin_pwd/lib/utils.rc
 
+# check xclip
+if ! [ -x "$(command -v xclip)" ]; then
+  echo "${RED} this script requires xclip to be installed ${NC}"
+  exit 1
+fi
+
+# figure out params
+out=0;
 while [[ "$#" -gt 0 ]]; do case $1 in
   -o) out=1; file=$2; shift;;
-  *) out=0; file=$1;;
+  *) file=$1;;
 esac; shift; done
 
-if [ $out -eq 1 ]; then xclip -selection c -o > $file;
-else cat $file | xclip -selection c; fi
+# do logic
+if [ $out -eq 1 ]; then
+  do=1
+  if [ -f "$file" ]; then
+    read -rp "${ASK_QUESTION}file '${file}' already exists. override? [y/n]:${BREAK}" DO_IT
+    if [[ ${DO_IT,,} =~ ^(y|yes|j|ja|s|si|sim|o|oui)$ ]]; then do=1; else do=0; fi
+  fi
+  if [[ do -eq 1 ]]; then xclip -selection c -o > $file; fi
+else
+  if [ ! -f "$file" ]; then
+    echo "${RED} file '${file}' does not exist ${NC}"
+  else
+    cat $file | xclip -selection c
+  fi
+fi
