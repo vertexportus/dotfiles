@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+bin_pwd=$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )
+source $bin_pwd/lib/utils.rc
+
+# check xclip
+if ! [ -x "$(command -v xclip)" ]; then
+  echo "${RED} this script requires xclip to be installed ${NC}"
+  exit 1
+fi
+
+rawjson=$(xclip -selection c -o)
+echo $rawjson | python -m json.tool | xclip -selection c
