@@ -388,6 +388,7 @@ for_window [class="Xfburn"] floating enable
 for_window [class="odrive"] floating enable border normal
 for_window [class="Blueman-manager"] floating enable border normal
 for_window [class="deepin-system-monitor"] floating enable border normal
+for_window [class="jetbrains-*" title="win0"] floating enable;
 
 # wine apps
 for_window [instance="battle.net.exe"] floating enable border normal

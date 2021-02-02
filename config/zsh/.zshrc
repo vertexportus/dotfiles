@@ -23,6 +23,9 @@ emulate sh -c '. ~/.profile'
 if [ -f /usr/share/nvm/init-nvm.sh ]; then
     source /usr/share/nvm/init-nvm.sh
 fi
+if command -v yarn &> /dev/null; then
+    export PATH="$(yarn global bin):$PATH"
+fi
 if [ -d ~/.asdf ]; then
     export PATH="$HOME/.asdf/bin:$HOME/.asdf/shims:$PATH"
     $HOME/.asdf/completions/asdf.bash
