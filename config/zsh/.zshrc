@@ -14,7 +14,8 @@ eval $(keychain --eval --quick --quiet --confhost --noask)
 source $ZSH/oh-my-zsh.sh
 
 # alias
-alias ll="ls -la"
+alias ls="exa"
+alias ll="exa -la"
 
 # vars and profile
 export EDITOR=/usr/bin/vim
@@ -29,6 +30,10 @@ fi
 
 # direnv
 eval "$(direnv hook zsh)"
+
+if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
 
 # zsh highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
