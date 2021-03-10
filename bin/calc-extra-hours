@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+
+sal_str = sys.argv[2] if len(sys.argv) > 2 else (os.environ['CEH_HE'] if 'CEH_HE' in os.environ else None)
+if sal_str is None:
+    raise Exception('sal is None')
+sal = float(sal_str)
+extra_hours = int(sys.argv[1])
+
+hours_per_week = 40
+hours_per_month = hours_per_week * 4
+
+value_per_hour = (sal / hours_per_month) * 1.5
+extra_value_gross = extra_hours * value_per_hour
+extra_value_liquid = extra_value_gross * (1 - 0.275) # take out taxes
+
+print(f"Extra Hours: {extra_hours}")
+print(f"Per   Hour : {'%.2f' % round(value_per_hour, 3)}")
+print(f"Extra Gross: {'%.2f' % round(extra_value_gross, 3)}")
+print(f"Extra Liqud: {'%.2f' % round(extra_value_liquid, 3)}")
