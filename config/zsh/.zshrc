@@ -16,6 +16,7 @@ source $ZSH/oh-my-zsh.sh
 # alias
 alias ls="exa"
 alias ll="exa -la"
+alias cat="bat --theme TwoDark"
 
 # vars and profile
 export EDITOR=/usr/bin/vim
