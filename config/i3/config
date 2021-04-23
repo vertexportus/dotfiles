@@ -138,6 +138,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +1% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -1% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+bindsym Pause exec --no-startup-id pactl set-source-mute 4 toggle
 
 #######################################
 ####### APP AUTOSTART
@@ -293,6 +297,7 @@ set $ws5 "5 "
 set $ws6 "6 "
 set $ws7 "7 "
 set $ws8 "8 "
+set $ws9 "9 "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -303,6 +308,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -313,6 +319,7 @@ bindsym $mod+Ctrl+5 move container to workspace $ws5
 bindsym $mod+Ctrl+6 move container to workspace $ws6
 bindsym $mod+Ctrl+7 move container to workspace $ws7
 bindsym $mod+Ctrl+8 move container to workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -323,6 +330,7 @@ bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Move workspace on monitors
 bindsym $mod+$altmod+Right move workspace to output right
@@ -394,7 +402,7 @@ for_window [class="jetbrains-*" title="win0"] floating enable;
 for_window [instance="battle.net.exe"] floating enable border normal
 
 # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
+#for_window [urgent=latest] focus
 
 #######################################
 ####### CONSOLE SCRATCHPADS
@@ -402,14 +410,14 @@ for_window [urgent=latest] focus
 
 # floating scratchpads
 for_window [instance="floatconsole"] move scratchpad, resize set 1850 1024, move position center, border pixel 1
-exec terminology -B -t=pikalogy -f="FuraCode Nerd Font/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
+exec terminology -B -t=pikalogy -f="FuraCode Nerd Font/12" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole
 bindsym $mod+Shift+Return [instance="floatconsole"] scratchpad show, move position center
 
 for_window [instance="floatpython"] move scratchpad, resize set 600 500, move position center, border pixel 5
-exec terminology -B -t=solarized -f="FuraCode Nerd Font/18" --name=floatpython -e python
+exec terminology -B -t=solarized -f="FuraCode Nerd Font/14" --name=floatpython -e python
 bindsym $mod+Shift+c [instance="floatpython"] scratchpad show, move position center
 
-bindsym $mod+u exec terminology -B -t=nyan -f="FuraCode Nerd Font/16" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
+bindsym $mod+u exec terminology -B -t=nyan -f="FuraCode Nerd Font/12" -b=/usr/share/terminology/backgrounds/mystic.png --name=floatconsole, exec terminology -B -t=solarized -f="FiraCode/14" --name=floatpython -e python
 #bindsym $mod+u exec cool-retro-term -p "Portus TV" --name floatconsole, exec terminology -B -t=solarized -f="FiraCode/18" --name=floatpython -e python
 
 #######################################
@@ -493,5 +501,3 @@ bar {
 	}
 }
 
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
