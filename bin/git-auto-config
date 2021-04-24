@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 bin_pwd=$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." >/dev/null 2>&1 && pwd )
 source $bin_pwd/lib/utils.rc
+source $bin_pwd/lib/menu.rc
 
 ## checks
 echo ''
@@ -13,30 +14,18 @@ if [ -d .git ]; then
         echo ''
     fi
 
-    read -rp "${ASK_QUESTION}Name:${BREAK}" NAME
-    echo ''
-
     if [[ $USE_GPG -eq 1 ]]; then
         gpg_keys_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "[A-F0-9]{40}"))
         gpg_emails_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "<.*@.*>" | sed "s/[<>]//g"))
-        echo "0 <NONE>"
-        for ((i=0; i<${#gpg_keys_list[@]}; ++i)); do
-            a=$(($i + 1))
-            echo "$a" "${gpg_emails_list[i]}" # "${gpg_keys_list[i]}"
-        done
-        echo ''
-        read -rp "${ASK_QUESTION}Select one as Email/GPG:${BREAK}" EMAIL_INDEX
-        if ! [ $EMAIL_INDEX -eq 0 ]; then
-            index=$(($EMAIL_INDEX - 1))
-            EMAIL="${gpg_emails_list[$index]}"
-            GPG_KEY="${gpg_keys_list[$index]}"
-            echo $EMAIL
-        else
-            USE_GPG=0
-            read -rp "${ASK_QUESTION}Email:${BREAK}" EMAIL
-        fi
+        gpg_names_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "]\s.*\s<" | sed "s/^\]\s//g" | sed "s/\s<$//g"))
+
+        start_menu ${gpg_emails_list[@]}
+        NAME=${gpg_names_list[$menu_cursor]}
+        EMAIL=${gpg_emails_list[$menu_cursor]}
+        GPG_KEY=${gpg_keys_list[$menu_cursor]}
     else
         USE_GPG=0
+        read -rp "${ASK_QUESTION}Name:${BREAK}" NAME
         read -rp "${ASK_QUESTION}Email:${BREAK}" EMAIL
     fi
     
@@ -59,5 +48,5 @@ if [ -d .git ]; then
         echo "${RED} git config NOT SET ${NC}"
     fi
 else
-  echo "${RED} Current folder is not a git repository ${NC}"
-fi;
+    echo "${RED} Current folder is not a git repository ${NC}"
+fi
