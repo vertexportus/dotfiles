@@ -1,0 +1,403 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+transparent = "#00000000"
+
+foreground = ${xrdb:foreground}
+background = ${xrdb:background}
+black       = ${xrdb:color0}
+darkred     = ${xrdb:color1}
+darkgreen   = ${xrdb:color2}
+darkyellow  = ${xrdb:color3}
+darkblue    = ${xrdb:color4}
+darkmagenta = ${xrdb:color5}
+darkcyan    = ${xrdb:color6}
+grey        = ${xrdb:color7}
+lightgray   = ${xrdb:color8}
+red         = ${xrdb:color9}
+green       = ${xrdb:color10}
+yellow      = ${xrdb:color11}
+blue        = ${xrdb:color12}
+darkpurple  = ${xrdb:color13}
+cyan        = ${xrdb:color14}
+white       = ${xrdb:color15}
+
+foreground_alpha = ${env:foreground_alpha}
+background_alpha = ${env:background_alpha}
+black_alpha       = ${env:color0_alpha}
+darkred_alpha     = ${env:color1_alpha}
+darkgreen_alpha   = ${env:color2_alpha}
+darkyellow_alpha  = ${env:color3_alpha}
+darkblue_alpha    = ${env:color4_alpha}
+darkmagenta_alpha = ${env:color5_alpha}
+darkcyan_alpha    = ${env:color6_alpha}
+grey_alpha        = ${env:color7_alpha}
+lightgray_alpha   = ${env:color8_alpha}
+red_alpha         = ${env:color9_alpha}
+green_alpha       = ${env:color10_alpha}
+yellow_alpha      = ${env:color11_alpha}
+blue_alpha        = ${env:color12_alpha}
+darkpurple_alpha  = ${env:color13_alpha}
+cyan_alpha        = ${env:color14_alpha}
+white_alpha       = ${env:color15_alpha}
+
+foreground_half = ${env:foreground_half}
+background_half = ${env:background_half}
+black_half       = ${env:color0_half}
+darkred_half     = ${env:color1_half}
+darkgreen_half   = ${env:color2_half}
+darkyellow_half  = ${env:color3_half}
+darkblue_half    = ${env:color4_half}
+darkmagenta_half = ${env:color5_half}
+darkcyan_half    = ${env:color6_half}
+grey_half        = ${env:color7_half}
+lightgray_half   = ${env:color8_half}
+red_half         = ${env:color9_half}
+green_half       = ${env:color10_half}
+yellow_half      = ${env:color11_half}
+blue_half        = ${env:color12_half}
+darkpurple_half  = ${env:color13_half}
+cyan_half        = ${env:color14_half}
+white_half       = ${env:color15_half}
+
+foreground_slim = ${env:foreground_slim}
+background_slim = ${env:background_slim}
+black_slim       = ${env:color0_slim}
+darkred_slim     = ${env:color1_slim}
+darkgreen_slim   = ${env:color2_slim}
+darkyellow_slim  = ${env:color3_slim}
+darkblue_slim    = ${env:color4_slim}
+darkmagenta_slim = ${env:color5_slim}
+darkcyan_slim    = ${env:color6_slim}
+grey_slim        = ${env:color7_slim}
+lightgray_slim   = ${env:color8_slim}
+red_slim         = ${env:color9_slim}
+green_slim       = ${env:color10_slim}
+yellow_slim      = ${env:color11_slim}
+blue_slim        = ${env:color12_slim}
+darkpurple_slim  = ${env:color13_slim}
+cyan_slim        = ${env:color14_slim}
+white_slim       = ${env:color15_slim}
+
+[settings]
+screenchange-reload = true
+compositing-background = xor
+; compositing-background = screen
+; compositing-foreground = source
+# compositing-border = over
+pseudo-transparency = false
+
+;  _                    
+; | |__   __ _ _ __ ___ 
+; | '_ \ / _` | '__/ __|
+; | |_) | (_| | |  \__ \
+; |_.__/ \__,_|_|  |___/
+
+[bar/base]
+font-0=FuraCode Nerd Font Mono:style=Retina,Regular:size=10:antialias=true;3
+font-1=FuraCode Nerd Font Mono:style=Retina,Regular:size=12:antialias=true;3
+font-2=FuraCode Nerd Font Mono:style=Retina,Regular:size=14:antialias=true;3
+font-3=FuraCode Nerd Font Mono:style=Retina,Regular:size=16:antialias=true;3
+font-4=FuraCode Nerd Font Mono:style=Retina,Regular:size=18:antialias=true;4
+font-5=FuraCode Nerd Font Mono:style=Retina,Regular:size=20:antialias=true;5
+font-6=FuraCode Nerd Font Mono:style=Retina,Regular:size=1:antialias=true;5
+
+height = 20
+; radius = 10
+
+foreground = ${colors.foreground}
+background = ${colors.transparent}
+
+override-redirect = true
+module-margin = 0
+offset-y = 4
+
+wm-restack = i3
+
+[bar/complete]
+monitor = ${env:MONITOR:}
+inherit = bar/base
+
+width = 99.5%
+offset-x = 10
+fixed-center = true
+
+tray-position = right
+tray-detached = false
+tray-padding = 1
+tray-background = ${colors.transparent}
+
+modules-left = i3_rounded_background_left padding_i3 i3 padding_i3 i3_rounded_background_right
+modules-center = xwindow
+modules-right = pulseaudio-microphone pulseaudio padding_mem icon_mem padding_mem mem padding_cpu icon_cpu padding_cpu cpu padding_time icon_time padding_time time
+
+[bar/second]
+monitor = ${env:MONITOR:}
+inherit = bar/base
+
+width = 99.5%
+offset-x = 10
+fixed-center = true
+
+; tray-position = right
+; tray-detached = false
+; tray-padding = 1
+; tray-background = ${colors.transparent}
+
+modules-left = i3_rounded_background_left padding_i3 i3 padding_i3 i3_rounded_background_right
+; modules-center = xwindow
+modules-right = padding_mem icon_mem padding_mem mem padding_cpu icon_cpu padding_cpu cpu padding_time icon_time padding_time time
+
+;                      _       _           
+;  _ __ ___   ___   __| |_   _| | ___  ___ 
+; | '_ ` _ \ / _ \ / _` | | | | |/ _ \/ __|
+; | | | | | | (_) | (_| | |_| | |  __/\__ \
+; |_| |_| |_|\___/ \__,_|\__,_|_|\___||___/
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+format-padding = 0
+format-font = 5
+format-background = ${colors.darkred_slim}
+format-foreground = ${colors.foreground}
+index-sort = true
+pin-workspaces = true
+strip-wsnumbers = true
+wrapping-scroll = false
+
+ws-icon-0 = 1:;
+ws-icon-1 = 2:;
+ws-icon-2 = 3:;
+ws-icon-3 = 4:;
+ws-icon-4 = 5:;
+ws-icon-5 = 6:;
+ws-icon-6 = 7:;
+ws-icon-7 = 8:;
+ws-icon-8 = 9:;
+
+enable-click = true
+reverse-scroll = false
+
+label-separator=""
+label-separator-padding = 1
+label-separator-foreground = ${colors.foreground_alpha}
+
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground}
+label-focused-font = 6
+
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.foreground_alpha}
+label-unfocused-font = 6
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.background_alpha}
+label-urgent-font = 6
+
+label-visible = %icon%
+label-visible-font = 6
+
+[module/padding_i3]
+type = custom/text
+content = "    "
+content-font = 7
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkred_slim}
+content-padding = 0
+
+[module/i3_rounded_background_left]
+type = custom/text
+content = 
+;; 
+;; 
+content-font = 3
+content-foreground = ${colors.darkred_half}
+content-padding = 0
+
+[module/i3_rounded_background_right]
+type = custom/text
+content = 
+;; 
+;; 
+content-font = 3
+content-foreground = ${colors.darkred_half}
+content-padding = 0
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+label-font = 2
+label-foreground = ${colors.foreground_slim}
+label-background = ${colors.background_slim}
+label-padding = 1
+
+[module/xw_rounded_background_left]
+type = custom/text
+content = 
+;; 
+;; 
+content-font = 3
+content-foreground = ${colors.background_slim}
+content-padding = 1
+
+[module/xw_rounded_background_right]
+type = custom/text
+content = 
+;; 
+;; 
+content-font = 3
+content-foreground = ${colors.background_slim}
+content-padding = 1
+
+[module/icon_time]
+type = custom/text
+content = 﨟
+content-font = 5
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkred_half}
+# click-left = powermenu
+content-padding = 0
+
+[module/time]
+type = internal/date
+interval = 10
+
+time = "%H:%M"
+date = "%d %b"
+
+label = %date%, %time%
+label-padding = 1
+label-foreground = ${colors.foreground}
+label-background = ${colors.background_half}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-padding = 1
+format-volume = <ramp-volume><label-volume>
+format-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background_half}
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = "墳"
+ramp-volume-font = 2
+
+label-volume = %percentage:3:3%%
+# label-volume-padding = 2
+
+label-muted = "ﱝ   "
+label-muted-foreground = ${colors.foreground}
+label-muted-background = ${colors.background_half}
+label-muted-padding = 2
+label-muted-font = 2
+
+click-right = pavucontrol
+
+[module/power]
+type = custom/text
+content = 
+content-foreground = ${colors.foreground_slim}
+# click-left = powermenu
+content-padding = 1
+
+
+[module/padding_time]
+type = custom/text
+content = "    "
+content-font = 7
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkred_half}
+content-padding = 0
+
+[module/padding_cpu]
+type = custom/text
+content = "    "
+content-font = 7
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkblue_half}
+content-padding = 0
+
+[module/icon_cpu]
+type = custom/text
+content = 
+content-font = 5
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkblue_half}
+content-padding = 0
+
+[module/cpu]
+type = internal/cpu
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label> <ramp-coreload>
+format-padding = 1
+format-background = ${colors.background_slim}
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = %percentage:03%%
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/padding_mem]
+type = custom/text
+content = "    "
+content-font = 7
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkgreen_half}
+content-padding = 0
+
+[module/icon_mem]
+type = custom/text
+content = 
+content-font = 5
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.darkgreen_half}
+content-padding = 0
+
+[module/mem]
+type = internal/memory
+label = %gb_used%/%gb_free%
+label-padding = 1
+
+[module/pulseaudio-microphone]
+type = custom/script
+exec = ~/.config/polybar/pulseaudio-microphone.sh
+tail = true
+label-font = 3
+click-left = ~/.config/polybar/pulseaudio-microphone.sh --toggle &

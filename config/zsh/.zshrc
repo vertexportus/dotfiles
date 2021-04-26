@@ -41,3 +41,8 @@ fi
 
 # zsh highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# source wal colors.
+source ~/.cache/wal/colors.sh
+# export envar with alpha set.
+source extract-env-colors.sh
