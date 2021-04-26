@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+image=$(ls ~/gdrive/Personal/wallpapers | sort -R | tail -1)
+wal -i ~/gdrive/Personal/wallpapers/${image}
+
+source extract-env-colors.sh
