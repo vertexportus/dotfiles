@@ -175,7 +175,7 @@ type = internal/i3
 format = <label-state>
 format-padding = 0
 format-font = 5
-format-background = ${colors.darkred_slim}
+# format-background = ${colors.darkred_slim}
 format-foreground = ${colors.foreground}
 index-sort = true
 pin-workspaces = true
@@ -197,18 +197,22 @@ reverse-scroll = false
 
 label-separator=""
 label-separator-padding = 1
-label-separator-foreground = ${colors.foreground_alpha}
+# label-separator-foreground = ${colors.foreground_alpha}
+label-separator-foreground = ${colors.foreground_half}
 
 label-focused = %icon%
+# label-focused-foreground = ${colors.foreground}
 label-focused-foreground = ${colors.foreground}
 label-focused-font = 6
 
 label-unfocused = %icon%
-label-unfocused-foreground = ${colors.foreground_alpha}
+# label-unfocused-foreground = ${colors.foreground_alpha}
+label-unfocused-foreground = ${colors.foreground_half}
 label-unfocused-font = 6
 
 label-urgent = %icon%
-label-urgent-foreground = ${colors.background_alpha}
+# label-urgent-foreground = ${colors.background_alpha}
+label-urgent-foreground = ${colors.foreground_half}
 label-urgent-font = 6
 
 label-visible = %icon%
@@ -219,7 +223,7 @@ type = custom/text
 content = "    "
 content-font = 7
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkred_slim}
+# content-background = ${colors.darkred_slim}
 content-padding = 0
 
 [module/i3_rounded_background_left]
@@ -228,7 +232,7 @@ content = 
 ;; 
 ;; 
 content-font = 3
-content-foreground = ${colors.darkred_half}
+content-foreground = ${colors.foreground_half}
 content-padding = 0
 
 [module/i3_rounded_background_right]
@@ -237,7 +241,7 @@ content = 
 ;; 
 ;; 
 content-font = 3
-content-foreground = ${colors.darkred_half}
+content-foreground = ${colors.foreground_half}
 content-padding = 0
 
 [module/xwindow]
