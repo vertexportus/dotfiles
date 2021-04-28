@@ -145,7 +145,7 @@ tray-background = ${colors.transparent}
 
 modules-left = i3_rounded_background_left padding_i3 i3 padding_i3 i3_rounded_background_right
 modules-center = xwindow
-modules-right = pulseaudio-microphone pulseaudio padding_mem icon_mem padding_mem mem padding_cpu icon_cpu padding_cpu cpu padding_time icon_time padding_time time
+modules-right = padding_docker icon_docker padding_docker docker pulseaudio-microphone pulseaudio padding_mem icon_mem padding_mem mem padding_cpu icon_cpu padding_cpu cpu padding_time icon_time padding_time time
 
 [bar/second]
 monitor = ${env:MONITOR:}
@@ -405,3 +405,25 @@ exec = ~/.config/polybar/pulseaudio-microphone.sh
 tail = true
 label-font = 3
 click-left = ~/.config/polybar/pulseaudio-microphone.sh --toggle &
+
+[module/padding_docker]
+type = custom/text
+content = "    "
+content-font = 7
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.green_half}
+content-padding = 0
+
+[module/icon_docker]
+type = custom/text
+content = 
+content-font = 6
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.green_half}
+content-padding = 0
+
+[module/docker]
+type = custom/script
+exec = ~/.config/polybar/info-docker.sh
+interval = 60
+label-padding = 1
