@@ -172,7 +172,7 @@ modules-right = padding_mem icon_mem padding_mem mem padding_cpu icon_cpu paddin
 
 [module/i3]
 type = internal/i3
-format = <label-state>
+format = <label-state> <label-mode>
 format-padding = 0
 format-font = 5
 # format-background = ${colors.darkred_slim}
@@ -228,8 +228,8 @@ content-padding = 0
 
 [module/i3_rounded_background_left]
 type = custom/text
-content = 
-;; 
+content = 
+;; 
 ;; 
 content-font = 3
 content-foreground = ${colors.foreground_half}
@@ -237,8 +237,8 @@ content-padding = 0
 
 [module/i3_rounded_background_right]
 type = custom/text
-content = 
-;; 
+content = 
+;; 
 ;; 
 content-font = 3
 content-foreground = ${colors.foreground_half}
@@ -247,7 +247,7 @@ content-padding = 0
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:50:...%
-label-font = 2
+label-font = 1
 label-foreground = ${colors.foreground_slim}
 label-background = ${colors.background_slim}
 label-padding = 1
@@ -275,8 +275,16 @@ type = custom/text
 content = 﨟
 content-font = 5
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkred_half}
+content-background = ${colors.green_slim}
 # click-left = powermenu
+content-padding = 0
+
+[module/padding_time]
+type = custom/text
+content = "    "
+content-font = 7
+content-foreground = ${colors.foreground_slim}
+content-background = ${colors.green_slim}
 content-padding = 0
 
 [module/time]
@@ -324,21 +332,12 @@ content-foreground = ${colors.foreground_slim}
 # click-left = powermenu
 content-padding = 1
 
-
-[module/padding_time]
-type = custom/text
-content = "    "
-content-font = 7
-content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkred_half}
-content-padding = 0
-
 [module/padding_cpu]
 type = custom/text
 content = "    "
 content-font = 7
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkblue_half}
+content-background = ${colors.yellow_slim}
 content-padding = 0
 
 [module/icon_cpu]
@@ -346,25 +345,15 @@ type = custom/text
 content = 
 content-font = 5
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkblue_half}
+content-background = ${colors.yellow_slim}
 content-padding = 0
 
 [module/cpu]
 type = internal/cpu
-; Available tags:
-;   <label> (default)
-;   <bar-load>
-;   <ramp-load>
-;   <ramp-coreload>
 format = <label> <ramp-coreload>
 format-padding = 1
 format-background = ${colors.background_slim}
 
-; Available tokens:
-;   %percentage% (default) - total cpu load averaged over all cores
-;   %percentage-sum% - Cumulative load on all cores
-;   %percentage-cores% - load percentage for each core
-;   %percentage-core[1-9]% - load percentage for specific core
 label = %percentage:03%%
 
 ; Spacing between individual per-core ramps
@@ -383,7 +372,7 @@ type = custom/text
 content = "    "
 content-font = 7
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkgreen_half}
+content-background = ${colors.blue_slim}
 content-padding = 0
 
 [module/icon_mem]
@@ -391,13 +380,14 @@ type = custom/text
 content = 
 content-font = 5
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.darkgreen_half}
+content-background = ${colors.blue_slim}
 content-padding = 0
 
 [module/mem]
 type = internal/memory
 label = %gb_used%/%gb_free%
 label-padding = 1
+label-background = ${colors.background_half}
 
 [module/pulseaudio-microphone]
 type = custom/script
@@ -411,7 +401,7 @@ type = custom/text
 content = "    "
 content-font = 7
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.green_half}
+content-background = ${colors.red_slim}
 content-padding = 0
 
 [module/icon_docker]
@@ -419,7 +409,7 @@ type = custom/text
 content = 
 content-font = 6
 content-foreground = ${colors.foreground_slim}
-content-background = ${colors.green_half}
+content-background = ${colors.red_slim}
 content-padding = 0
 
 [module/docker]
@@ -427,3 +417,4 @@ type = custom/script
 exec = ~/.config/polybar/info-docker.sh
 interval = 60
 label-padding = 1
+label-background = ${colors.background_half}

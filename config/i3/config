@@ -166,6 +166,9 @@ exec_always --no-startup-id autorandr --change --skip-options gamma
 # compton
 exec --no-startup-id picom --config ~/.config/picom.conf -b
 
+# polybar
+exec --no-startup-id ~/.config/polybar/start.sh
+
 # manjaro
 # exec --no-startup-id manjaro-hello
 # exec --no-startup-id pamac-tray
