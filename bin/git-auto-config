@@ -17,10 +17,10 @@ if [ -d .git ]; then
     if [[ $USE_GPG -eq 1 ]]; then
         gpg_keys_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "[A-F0-9]{40}"))
         gpg_emails_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "<.*@.*>" | sed "s/[<>]//g"))
-        gpg_names_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "]\s.*\s<" | sed "s/^\]\s//g" | sed "s/\s<$//g"))
-
+        gpg_names_list=($(gpg --list-secret-keys --keyid-format LONG | egrep -o "]\s.*\s<" | sed "s/^\]\s//g" | sed "s/\s<$//g" | sed "s/\s/_/g"))
+        
         start_menu ${gpg_emails_list[@]}
-        NAME=${gpg_names_list[$menu_cursor]}
+        NAME=$(echo ${gpg_names_list[$menu_cursor]} | sed "s/_/ /g")
         EMAIL=${gpg_emails_list[$menu_cursor]}
         GPG_KEY=${gpg_keys_list[$menu_cursor]}
     else
