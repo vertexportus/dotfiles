@@ -158,7 +158,7 @@ exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky
 # exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id autorandr --change --skip-options gamma
+# exec_always --no-startup-id autorandr --change --skip-options gamma
 
 # auth
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -167,14 +167,15 @@ exec_always --no-startup-id autorandr --change --skip-options gamma
 exec --no-startup-id picom --config ~/.config/picom.conf -b
 
 # polybar
+exec --no-startup-id theme-gen
 exec --no-startup-id ~/.config/polybar/start.sh
 
 # manjaro
 # exec --no-startup-id manjaro-hello
-# exec --no-startup-id pamac-tray
+exec --no-startup-id pamac-tray
 
 # clipboard
-# exec --no-startup-id clipit
+exec --no-startup-id clipit
 
 # background
 #exec --no-startup-id systemd-run --on-calendar="*:0/15" --user -- \
