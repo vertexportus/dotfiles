@@ -167,8 +167,8 @@ exec_always --no-startup-id fix_xcursor
 exec --no-startup-id picom --config ~/.config/picom.conf -b
 
 # polybar
-exec --no-startup-id theme-gen
-exec --no-startup-id ~/.config/polybar/start.sh
+exec --no-startup-id theme-gen-polybar
+# exec --no-startup-id ~/.config/polybar/start.sh
 
 # manjaro
 # exec --no-startup-id manjaro-hello

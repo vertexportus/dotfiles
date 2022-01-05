@@ -43,7 +43,7 @@ IFS="${old_IFS}"
 # Otherwise, if there are any external monitors, use the 'first' detected one
 # as the primary monitor.
 if [ -n "$TO_DISABLE" ] && [ -n "$PRIMARY_OUT" ]; then
-    xrandr --output "$PRIMARY_OUT" --primary --auto --output "$TO_DISABLE" --left-of "$PRIMARY_OUT"
+    xrandr --output "$PRIMARY_OUT" --primary --auto --output "$TO_DISABLE" --right-of "$PRIMARY_OUT"
 elif [ -n "$PRIMARY_OUT" ]; then
     xrandr --output "$PRIMARY_OUT" --primary --auto
 fi

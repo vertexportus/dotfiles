@@ -28,5 +28,10 @@ monitor_primary_res=$(polybar -m | grep primary | sed "s/\s(.*)//g" | sed "s/.*:
 # echo $POLYBAR_FONT0
 # echo $POLYBAR_FONT1
 
+# source wal colors.
+source ~/.cache/wal/colors.sh
+# export envar with alpha set.
+source extract-env-colors.sh
+
 polybar complete &
 MONITOR=${monitor_secondary} polybar second &
