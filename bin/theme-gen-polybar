@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+theme-gen &
+sleep 1
+~/.config/polybar/start.sh
