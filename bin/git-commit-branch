@@ -6,6 +6,6 @@ while [[ "$#" -gt 0 ]]; do case $1 in
   *) echo "Unknown parameter passed: $1"; exit 1;;
 esac; shift; done
 
-branch=$(git branch | grep \* | cut -d ' ' -f2 | tr -d '\n')
+branch=$(git branch | grep \* | cut -d ' ' -f2 | sed -r 's/.*\/(.*)/\1/')
 if [[ $add -eq 1 ]]; then params="-am"; else params="-m"; fi
 git commit $params "$branch : $message"
